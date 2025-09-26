@@ -565,113 +565,113 @@
             // 
             // LaneTwo5
             // 
-            LaneTwo5.BackColor = Color.White;
-            LaneTwo5.ForeColor = SystemColors.Control;
-            LaneTwo5.Location = new Point(337, 609);
-            LaneTwo5.Margin = new Padding(4, 0, 4, 0);
-            LaneTwo5.Name = "LaneTwo5";
-            LaneTwo5.Size = new Size(18, 104);
-            LaneTwo5.TabIndex = 43;
-            LaneTwo5.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // LaneTwo4
-            // 
-            LaneTwo4.BackColor = Color.White;
-            LaneTwo4.ForeColor = SystemColors.Control;
-            LaneTwo4.Location = new Point(337, 447);
-            LaneTwo4.Margin = new Padding(4, 0, 4, 0);
-            LaneTwo4.Name = "LaneTwo4";
-            LaneTwo4.Size = new Size(18, 104);
-            LaneTwo4.TabIndex = 42;
-            LaneTwo4.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // LaneTwo3
-            // 
-            LaneTwo3.BackColor = Color.White;
-            LaneTwo3.ForeColor = SystemColors.Control;
-            LaneTwo3.Location = new Point(337, 286);
-            LaneTwo3.Margin = new Padding(4, 0, 4, 0);
-            LaneTwo3.Name = "LaneTwo3";
-            LaneTwo3.Size = new Size(18, 104);
-            LaneTwo3.TabIndex = 41;
-            LaneTwo3.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // LaneTwo2
-            // 
-            LaneTwo2.BackColor = Color.White;
-            LaneTwo2.ForeColor = SystemColors.Control;
-            LaneTwo2.Location = new Point(337, 124);
-            LaneTwo2.Margin = new Padding(4, 0, 4, 0);
-            LaneTwo2.Name = "LaneTwo2";
-            LaneTwo2.Size = new Size(18, 104);
-            LaneTwo2.TabIndex = 40;
-            LaneTwo2.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // LaneTwo1
-            // 
-            LaneTwo1.BackColor = Color.White;
-            LaneTwo1.ForeColor = SystemColors.Control;
-            LaneTwo1.Location = new Point(337, -37);
-            LaneTwo1.Margin = new Padding(4, 0, 4, 0);
-            LaneTwo1.Name = "LaneTwo1";
-            LaneTwo1.Size = new Size(18, 104);
-            LaneTwo1.TabIndex = 39;
-            LaneTwo1.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // LaneOne5
-            // 
-            LaneOne5.BackColor = Color.White;
-            LaneOne5.ForeColor = SystemColors.Control;
-            LaneOne5.Location = new Point(104, 609);
-            LaneOne5.Margin = new Padding(4, 0, 4, 0);
-            LaneOne5.Name = "LaneOne5";
-            LaneOne5.Size = new Size(18, 104);
-            LaneOne5.TabIndex = 38;
-            LaneOne5.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // LaneOne4
-            // 
-            LaneOne4.BackColor = Color.White;
-            LaneOne4.ForeColor = SystemColors.Control;
-            LaneOne4.Location = new Point(104, 448);
-            LaneOne4.Margin = new Padding(4, 0, 4, 0);
-            LaneOne4.Name = "LaneOne4";
-            LaneOne4.Size = new Size(18, 104);
-            LaneOne4.TabIndex = 37;
-            LaneOne4.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // LaneOne3
-            // 
-            LaneOne3.BackColor = Color.White;
-            LaneOne3.ForeColor = SystemColors.Control;
-            LaneOne3.Location = new Point(104, 286);
-            LaneOne3.Margin = new Padding(4, 0, 4, 0);
-            LaneOne3.Name = "LaneOne3";
-            LaneOne3.Size = new Size(18, 104);
-            LaneOne3.TabIndex = 36;
-            LaneOne3.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // LaneOne2
-            // 
-            LaneOne2.BackColor = Color.White;
-            LaneOne2.ForeColor = SystemColors.Control;
-            LaneOne2.Location = new Point(104, 124);
-            LaneOne2.Margin = new Padding(4, 0, 4, 0);
-            LaneOne2.Name = "LaneOne2";
-            LaneOne2.Size = new Size(18, 104);
-            LaneOne2.TabIndex = 35;
-            LaneOne2.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // LaneOne1
-            // 
-            LaneOne1.BackColor = Color.White;
-            LaneOne1.ForeColor = SystemColors.Control;
-            LaneOne1.Location = new Point(104, -37);
-            LaneOne1.Margin = new Padding(4, 0, 4, 0);
-            LaneOne1.Name = "LaneOne1";
-            LaneOne1.Size = new Size(18, 104);
-            LaneOne1.TabIndex = 34;
-            LaneOne1.TextAlign = ContentAlignment.TopCenter;
+            //LaneTwo5.BackColor = Color.White;
+            //LaneTwo5.ForeColor = SystemColors.Control;
+            //LaneTwo5.Location = new Point(337, 609);
+            //LaneTwo5.Margin = new Padding(4, 0, 4, 0);
+            //LaneTwo5.Name = "LaneTwo5";
+            //LaneTwo5.Size = new Size(18, 104);
+            //LaneTwo5.TabIndex = 43;
+            //LaneTwo5.TextAlign = ContentAlignment.TopCenter;
+            //// 
+            //// LaneTwo4
+            //// 
+            //LaneTwo4.BackColor = Color.White;
+            //LaneTwo4.ForeColor = SystemColors.Control;
+            //LaneTwo4.Location = new Point(337, 447);
+            //LaneTwo4.Margin = new Padding(4, 0, 4, 0);
+            //LaneTwo4.Name = "LaneTwo4";
+            //LaneTwo4.Size = new Size(18, 104);
+            //LaneTwo4.TabIndex = 42;
+            //LaneTwo4.TextAlign = ContentAlignment.TopCenter;
+            //// 
+            //// LaneTwo3
+            //// 
+            //LaneTwo3.BackColor = Color.White;
+            //LaneTwo3.ForeColor = SystemColors.Control;
+            //LaneTwo3.Location = new Point(337, 286);
+            //LaneTwo3.Margin = new Padding(4, 0, 4, 0);
+            //LaneTwo3.Name = "LaneTwo3";
+            //LaneTwo3.Size = new Size(18, 104);
+            //LaneTwo3.TabIndex = 41;
+            //LaneTwo3.TextAlign = ContentAlignment.TopCenter;
+            //// 
+            //// LaneTwo2
+            //// 
+            //LaneTwo2.BackColor = Color.White;
+            //LaneTwo2.ForeColor = SystemColors.Control;
+            //LaneTwo2.Location = new Point(337, 124);
+            //LaneTwo2.Margin = new Padding(4, 0, 4, 0);
+            //LaneTwo2.Name = "LaneTwo2";
+            //LaneTwo2.Size = new Size(18, 104);
+            //LaneTwo2.TabIndex = 40;
+            //LaneTwo2.TextAlign = ContentAlignment.TopCenter;
+            //// 
+            //// LaneTwo1
+            //// 
+            //LaneTwo1.BackColor = Color.White;
+            //LaneTwo1.ForeColor = SystemColors.Control;
+            //LaneTwo1.Location = new Point(337, -37);
+            //LaneTwo1.Margin = new Padding(4, 0, 4, 0);
+            //LaneTwo1.Name = "LaneTwo1";
+            //LaneTwo1.Size = new Size(18, 104);
+            //LaneTwo1.TabIndex = 39;
+            //LaneTwo1.TextAlign = ContentAlignment.TopCenter;
+            //// 
+            //// LaneOne5
+            //// 
+            //LaneOne5.BackColor = Color.White;
+            //LaneOne5.ForeColor = SystemColors.Control;
+            //LaneOne5.Location = new Point(104, 609);
+            //LaneOne5.Margin = new Padding(4, 0, 4, 0);
+            //LaneOne5.Name = "LaneOne5";
+            //LaneOne5.Size = new Size(18, 104);
+            //LaneOne5.TabIndex = 38;
+            //LaneOne5.TextAlign = ContentAlignment.TopCenter;
+            //// 
+            //// LaneOne4
+            //// 
+            //LaneOne4.BackColor = Color.White;
+            //LaneOne4.ForeColor = SystemColors.Control;
+            //LaneOne4.Location = new Point(104, 448);
+            //LaneOne4.Margin = new Padding(4, 0, 4, 0);
+            //LaneOne4.Name = "LaneOne4";
+            //LaneOne4.Size = new Size(18, 104);
+            //LaneOne4.TabIndex = 37;
+            //LaneOne4.TextAlign = ContentAlignment.TopCenter;
+            //// 
+            //// LaneOne3
+            //// 
+            //LaneOne3.BackColor = Color.White;
+            //LaneOne3.ForeColor = SystemColors.Control;
+            //LaneOne3.Location = new Point(104, 286);
+            //LaneOne3.Margin = new Padding(4, 0, 4, 0);
+            //LaneOne3.Name = "LaneOne3";
+            //LaneOne3.Size = new Size(18, 104);
+            //LaneOne3.TabIndex = 36;
+            //LaneOne3.TextAlign = ContentAlignment.TopCenter;
+            //// 
+            //// LaneOne2
+            //// 
+            //LaneOne2.BackColor = Color.White;
+            //LaneOne2.ForeColor = SystemColors.Control;
+            //LaneOne2.Location = new Point(104, 124);
+            //LaneOne2.Margin = new Padding(4, 0, 4, 0);
+            //LaneOne2.Name = "LaneOne2";
+            //LaneOne2.Size = new Size(18, 104);
+            //LaneOne2.TabIndex = 35;
+            //LaneOne2.TextAlign = ContentAlignment.TopCenter;
+            //// 
+            //// LaneOne1
+            //// 
+            //LaneOne1.BackColor = Color.White;
+            //LaneOne1.ForeColor = SystemColors.Control;
+            //LaneOne1.Location = new Point(104, -37);
+            //LaneOne1.Margin = new Padding(4, 0, 4, 0);
+            //LaneOne1.Name = "LaneOne1";
+            //LaneOne1.Size = new Size(18, 104);
+            //LaneOne1.TabIndex = 34;
+            //LaneOne1.TextAlign = ContentAlignment.TopCenter;
             // 
             // MiddleLane
             // 

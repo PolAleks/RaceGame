@@ -15,10 +15,40 @@
         // Массив правой прерывистой полосы в меню
         Label[] LanesMenuTwo = new Label[5];
 
+        List<Label> linesGame;
+        List<Label> linesMenu;
+
         Random r = new Random();
         int score = 0;
         int coins = 0;
         int carSpeed = 2;
+
+        private List<Label> CreateLines()
+        {
+            int startX = 104;
+            int horisontalDistanceLines = 233;
+
+            int startY = -49;
+            int verticalDistanceLines = 162;
+
+            var lines = new List<Label>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    Label line = new Label();
+                    
+                    int X = startX + horisontalDistanceLines * j;
+                    int Y = startY + verticalDistanceLines * i;
+                    line.Location = new Point(X, Y);
+                    line.BackColor = Color.White;
+                    line.Size = new Size(18, 104);
+                    lines.Add(line);
+                }
+            }
+            return lines;
+        }
 
         /// <summary>
         /// Обработчик движения трассы(полосы, монеты) в процессе игры 
@@ -31,21 +61,34 @@
             labelScore.Text = "Score: " + score / 10;
 
             #region Механиз перемещения прерывистых полос вниз 
-            for (int i = 0; i < LanesOne.Length; ++i)
+            //for (int i = 0; i < LanesOne.Length; ++i)
+            //{
+            //    LanesOne[i].Top += carSpeed;
+            //    if (LanesOne[i].Top >= Height)
+            //    {
+            //        LanesOne[i].Top = -LanesOne[i].Height;
+            //    }
+            //    if (carSpeed != 0)
+            //        score++;
+            //}
+            //for (int i = 0; i < LanesTwo.Length; ++i)
+            //{
+            //    LanesTwo[i].Top += carSpeed;
+            //    if (LanesTwo[i].Top >= Height)
+            //        LanesTwo[i].Top = -LanesTwo[i].Height;
+            //}
+
+            foreach (var line in linesGame)
             {
-                LanesOne[i].Top += carSpeed;
-                if (LanesOne[i].Top >= Height)
+                line.Top += carSpeed;
+                if(line.Top >= Height)
                 {
-                    LanesOne[i].Top = -LanesOne[i].Height;
+                    line.Top = -line.Height;
                 }
-                if (carSpeed != 0)
-                    1score++;
-            }
-            for (int i = 0; i < LanesTwo.Length; ++i)
-            {
-                LanesTwo[i].Top += carSpeed;
-                if (LanesTwo[i].Top >= Height)
-                    LanesTwo[i].Top = -LanesTwo[i].Height;
+
+                if(carSpeed != 0)
+                    score++;
+                
             }
             #endregion
 
@@ -107,17 +150,23 @@
         /// <param name="e"></param>
         private void RaceGame_Load(object sender, EventArgs e)
         {
-            LanesOne[0] = LaneOne1;
-            LanesOne[1] = LaneOne2;
-            LanesOne[2] = LaneOne3;
-            LanesOne[3] = LaneOne4;
-            LanesOne[4] = LaneOne5;
+            linesGame = CreateLines();
+            panelGame.Controls.AddRange(linesGame.ToArray());
 
-            LanesTwo[0] = LaneTwo1;
-            LanesTwo[1] = LaneTwo2;
-            LanesTwo[2] = LaneTwo3;
-            LanesTwo[3] = LaneTwo4;
-            LanesTwo[4] = LaneTwo5;
+            //linesMenu = CreateLines();
+            //panelMenu.Controls.AddRange(linesMenu.ToArray());
+
+            //LanesOne[0] = lines[0];
+            //LanesOne[1] = lines[1];
+            //LanesOne[2] = lines[2];
+            //LanesOne[3] = lines[3];
+            //LanesOne[4] = lines[4];
+                          
+            //LanesTwo[0] = lines[5];
+            //LanesTwo[1] = lines[6];
+            //LanesTwo[2] = lines[7];
+            //LanesTwo[3] = lines[8];
+            //LanesTwo[4] = lines[9];
 
             LanesMenuOne[0] = MenuOneLane1;
             LanesMenuOne[1] = MenuOneLane2;
@@ -130,6 +179,7 @@
             LanesMenuTwo[2] = MenuTwoLane3;
             LanesMenuTwo[3] = MenuTwoLane4;
             LanesMenuTwo[4] = MenuTwoLane5;
+
 
             timerRoad.Stop();
             timerTowardCars.Stop();
