@@ -6,49 +6,16 @@
         {
             InitializeComponent();
         }
-        // Массив левой преывистой полосы в процессе игры
-        Label[] LanesOne = new Label[5];
-        // Массив правой прерывистой полосы в процессе игры
-        Label[] LanesTwo = new Label[5];
-        // Массив левой прерывистой полосы в меню
-        Label[] LanesMenuOne = new Label[5];
-        // Массив правой прерывистой полосы в меню
-        Label[] LanesMenuTwo = new Label[5];
-
+        // Прерывистая разметка в игре
         List<Label> linesGame;
+
+        // Прерывистая разметка в меню
         List<Label> linesMenu;
 
         Random r = new Random();
         int score = 0;
         int coins = 0;
         int carSpeed = 2;
-
-        private List<Label> CreateLines()
-        {
-            int startX = 104;
-            int horisontalDistanceLines = 233;
-
-            int startY = -49;
-            int verticalDistanceLines = 162;
-
-            var lines = new List<Label>();
-
-            for (int i = 0; i < 5; i++)
-            {
-                for (int j = 0; j < 2; j++)
-                {
-                    Label line = new Label();
-                    
-                    int X = startX + horisontalDistanceLines * j;
-                    int Y = startY + verticalDistanceLines * i;
-                    line.Location = new Point(X, Y);
-                    line.BackColor = Color.White;
-                    line.Size = new Size(18, 104);
-                    lines.Add(line);
-                }
-            }
-            return lines;
-        }
 
         /// <summary>
         /// Обработчик движения трассы(полосы, монеты) в процессе игры 
@@ -60,37 +27,24 @@
             // Отображение набранных очков
             labelScore.Text = "Score: " + score / 10;
 
-            #region Механиз перемещения прерывистых полос вниз 
-            //for (int i = 0; i < LanesOne.Length; ++i)
-            //{
-            //    LanesOne[i].Top += carSpeed;
-            //    if (LanesOne[i].Top >= Height)
-            //    {
-            //        LanesOne[i].Top = -LanesOne[i].Height;
-            //    }
-            //    if (carSpeed != 0)
-            //        score++;
-            //}
-            //for (int i = 0; i < LanesTwo.Length; ++i)
-            //{
-            //    LanesTwo[i].Top += carSpeed;
-            //    if (LanesTwo[i].Top >= Height)
-            //        LanesTwo[i].Top = -LanesTwo[i].Height;
-            //}
+            if (carSpeed != 0)
+                score++;
+
+            MoveLines(linesGame);
 
             foreach (var line in linesGame)
             {
                 line.Top += carSpeed;
-                if(line.Top >= Height)
+                if (line.Top >= Height)
                 {
                     line.Top = -line.Height;
                 }
 
-                if(carSpeed != 0)
+                if (carSpeed != 0)
                     score++;
-                
+
             }
-            #endregion
+
 
             #region Механизм генерации монет в верху в новом месте по оси X после выхода за экран нижней границы формы
             Coin1.Top += carSpeed;
@@ -113,6 +67,16 @@
             }
             #endregion
             coinsCollect();
+        }
+
+        private void MoveLines(List<Label> lines)
+        {
+            foreach (var line in lines)
+            {
+                line.Top += carSpeed;
+                if (line.Top >= Height)
+                    line.Top = -line.Height;
+            }
         }
 
         /// <summary>
@@ -144,7 +108,7 @@
         }
 
         /// <summary>
-        /// Заполнение массивов прерывистых послос отвечающих за визуализацию движения в процессе игры в в меню
+        /// Инициализация разметки и запуск движения на панели меню
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -153,33 +117,8 @@
             linesGame = CreateLines();
             panelGame.Controls.AddRange(linesGame.ToArray());
 
-            //linesMenu = CreateLines();
-            //panelMenu.Controls.AddRange(linesMenu.ToArray());
-
-            //LanesOne[0] = lines[0];
-            //LanesOne[1] = lines[1];
-            //LanesOne[2] = lines[2];
-            //LanesOne[3] = lines[3];
-            //LanesOne[4] = lines[4];
-                          
-            //LanesTwo[0] = lines[5];
-            //LanesTwo[1] = lines[6];
-            //LanesTwo[2] = lines[7];
-            //LanesTwo[3] = lines[8];
-            //LanesTwo[4] = lines[9];
-
-            LanesMenuOne[0] = MenuOneLane1;
-            LanesMenuOne[1] = MenuOneLane2;
-            LanesMenuOne[2] = MenuOneLane3;
-            LanesMenuOne[3] = MenuOneLane4;
-            LanesMenuOne[4] = MenuOneLane5;
-
-            LanesMenuTwo[0] = MenuTwoLane1;
-            LanesMenuTwo[1] = MenuTwoLane2;
-            LanesMenuTwo[2] = MenuTwoLane3;
-            LanesMenuTwo[3] = MenuTwoLane4;
-            LanesMenuTwo[4] = MenuTwoLane5;
-
+            linesMenu = CreateLines();
+            panelMenu.Controls.AddRange(linesMenu.ToArray());
 
             timerRoad.Stop();
             timerTowardCars.Stop();
@@ -311,20 +250,8 @@
         }
         private void timerMenu_Tick(object sender, EventArgs e)
         {
-            for (int i = 0; i < LanesMenuOne.Length; ++i)
-            {
-                LanesMenuOne[i].Top += carSpeed;
-                if (LanesMenuOne[i].Top >= Height)
-                {
-                    LanesMenuOne[i].Top = -LanesMenuOne[i].Height;
-                }
-            }
-            for (int i = 0; i < LanesMenuTwo.Length; ++i)
-            {
-                LanesMenuTwo[i].Top += carSpeed;
-                if (LanesMenuTwo[i].Top >= Height)
-                    LanesMenuTwo[i].Top = -LanesMenuTwo[i].Height;
-            }
+            MoveLines(linesMenu);
+
             CarMenu1.Top += 5;
             if (CarMenu1.Top > Height)
             {
@@ -381,6 +308,37 @@
         private void buttonMenuExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        /// <summary>
+        /// Генерация дорожной разметки
+        /// </summary>
+        /// <returns></returns>
+        private List<Label> CreateLines()
+        {
+            int startX = 104;
+            int horisontalDistanceLines = 233;
+
+            int startY = -49;
+            int verticalDistanceLines = 162;
+
+            var lines = new List<Label>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    Label line = new Label();
+
+                    int X = startX + horisontalDistanceLines * j;
+                    int Y = startY + verticalDistanceLines * i;
+                    line.Location = new Point(X, Y);
+                    line.BackColor = Color.White;
+                    line.Size = new Size(18, 104);
+                    lines.Add(line);
+                }
+            }
+            return lines;
         }
 
     }

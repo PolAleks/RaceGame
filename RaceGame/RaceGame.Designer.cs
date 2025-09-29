@@ -41,16 +41,6 @@
             CarMenu1 = new PictureBox();
             CarMenu3 = new PictureBox();
             CarMenu2 = new PictureBox();
-            MenuTwoLane5 = new Label();
-            MenuTwoLane4 = new Label();
-            MenuTwoLane3 = new Label();
-            MenuTwoLane2 = new Label();
-            MenuTwoLane1 = new Label();
-            MenuOneLane5 = new Label();
-            MenuOneLane4 = new Label();
-            MenuOneLane3 = new Label();
-            MenuOneLane2 = new Label();
-            MenuOneLane1 = new Label();
             label12 = new Label();
             buttonExit = new Button();
             buttonResume = new Button();
@@ -67,16 +57,6 @@
             Coin1 = new PictureBox();
             buttonPause = new Button();
             mainCar = new PictureBox();
-            LaneTwo5 = new Label();
-            LaneTwo4 = new Label();
-            LaneTwo3 = new Label();
-            LaneTwo2 = new Label();
-            LaneTwo1 = new Label();
-            LaneOne5 = new Label();
-            LaneOne4 = new Label();
-            LaneOne3 = new Label();
-            LaneOne2 = new Label();
-            LaneOne1 = new Label();
             MiddleLane = new Label();
             timerTowardCars = new System.Windows.Forms.Timer(components);
             timerMenu = new System.Windows.Forms.Timer(components);
@@ -117,16 +97,6 @@
             panelGame.Controls.Add(Coin1);
             panelGame.Controls.Add(buttonPause);
             panelGame.Controls.Add(mainCar);
-            panelGame.Controls.Add(LaneTwo5);
-            panelGame.Controls.Add(LaneTwo4);
-            panelGame.Controls.Add(LaneTwo3);
-            panelGame.Controls.Add(LaneTwo2);
-            panelGame.Controls.Add(LaneTwo1);
-            panelGame.Controls.Add(LaneOne5);
-            panelGame.Controls.Add(LaneOne4);
-            panelGame.Controls.Add(LaneOne3);
-            panelGame.Controls.Add(LaneOne2);
-            panelGame.Controls.Add(LaneOne1);
             panelGame.Controls.Add(MiddleLane);
             panelGame.Location = new Point(0, 0);
             panelGame.Margin = new Padding(4);
@@ -158,16 +128,6 @@
             panelMenu.Controls.Add(CarMenu1);
             panelMenu.Controls.Add(CarMenu3);
             panelMenu.Controls.Add(CarMenu2);
-            panelMenu.Controls.Add(MenuTwoLane5);
-            panelMenu.Controls.Add(MenuTwoLane4);
-            panelMenu.Controls.Add(MenuTwoLane3);
-            panelMenu.Controls.Add(MenuTwoLane2);
-            panelMenu.Controls.Add(MenuTwoLane1);
-            panelMenu.Controls.Add(MenuOneLane5);
-            panelMenu.Controls.Add(MenuOneLane4);
-            panelMenu.Controls.Add(MenuOneLane3);
-            panelMenu.Controls.Add(MenuOneLane2);
-            panelMenu.Controls.Add(MenuOneLane1);
             panelMenu.Controls.Add(label12);
             panelMenu.Location = new Point(0, 0);
             panelMenu.Margin = new Padding(4);
@@ -259,116 +219,6 @@
             CarMenu2.SizeMode = PictureBoxSizeMode.Zoom;
             CarMenu2.TabIndex = 79;
             CarMenu2.TabStop = false;
-            // 
-            // MenuTwoLane5
-            // 
-            MenuTwoLane5.BackColor = Color.White;
-            MenuTwoLane5.ForeColor = SystemColors.Control;
-            MenuTwoLane5.Location = new Point(337, 598);
-            MenuTwoLane5.Margin = new Padding(4, 0, 4, 0);
-            MenuTwoLane5.Name = "MenuTwoLane5";
-            MenuTwoLane5.Size = new Size(18, 104);
-            MenuTwoLane5.TabIndex = 78;
-            MenuTwoLane5.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // MenuTwoLane4
-            // 
-            MenuTwoLane4.BackColor = Color.White;
-            MenuTwoLane4.ForeColor = SystemColors.Control;
-            MenuTwoLane4.Location = new Point(337, 436);
-            MenuTwoLane4.Margin = new Padding(4, 0, 4, 0);
-            MenuTwoLane4.Name = "MenuTwoLane4";
-            MenuTwoLane4.Size = new Size(18, 104);
-            MenuTwoLane4.TabIndex = 77;
-            MenuTwoLane4.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // MenuTwoLane3
-            // 
-            MenuTwoLane3.BackColor = Color.White;
-            MenuTwoLane3.ForeColor = SystemColors.Control;
-            MenuTwoLane3.Location = new Point(337, 274);
-            MenuTwoLane3.Margin = new Padding(4, 0, 4, 0);
-            MenuTwoLane3.Name = "MenuTwoLane3";
-            MenuTwoLane3.Size = new Size(18, 104);
-            MenuTwoLane3.TabIndex = 76;
-            MenuTwoLane3.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // MenuTwoLane2
-            // 
-            MenuTwoLane2.BackColor = Color.White;
-            MenuTwoLane2.ForeColor = SystemColors.Control;
-            MenuTwoLane2.Location = new Point(337, 113);
-            MenuTwoLane2.Margin = new Padding(4, 0, 4, 0);
-            MenuTwoLane2.Name = "MenuTwoLane2";
-            MenuTwoLane2.Size = new Size(18, 104);
-            MenuTwoLane2.TabIndex = 75;
-            MenuTwoLane2.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // MenuTwoLane1
-            // 
-            MenuTwoLane1.BackColor = Color.White;
-            MenuTwoLane1.ForeColor = SystemColors.Control;
-            MenuTwoLane1.Location = new Point(337, -49);
-            MenuTwoLane1.Margin = new Padding(4, 0, 4, 0);
-            MenuTwoLane1.Name = "MenuTwoLane1";
-            MenuTwoLane1.Size = new Size(18, 104);
-            MenuTwoLane1.TabIndex = 74;
-            MenuTwoLane1.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // MenuOneLane5
-            // 
-            MenuOneLane5.BackColor = Color.White;
-            MenuOneLane5.ForeColor = SystemColors.Control;
-            MenuOneLane5.Location = new Point(104, 598);
-            MenuOneLane5.Margin = new Padding(4, 0, 4, 0);
-            MenuOneLane5.Name = "MenuOneLane5";
-            MenuOneLane5.Size = new Size(18, 104);
-            MenuOneLane5.TabIndex = 73;
-            MenuOneLane5.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // MenuOneLane4
-            // 
-            MenuOneLane4.BackColor = Color.White;
-            MenuOneLane4.ForeColor = SystemColors.Control;
-            MenuOneLane4.Location = new Point(104, 436);
-            MenuOneLane4.Margin = new Padding(4, 0, 4, 0);
-            MenuOneLane4.Name = "MenuOneLane4";
-            MenuOneLane4.Size = new Size(18, 104);
-            MenuOneLane4.TabIndex = 72;
-            MenuOneLane4.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // MenuOneLane3
-            // 
-            MenuOneLane3.BackColor = Color.White;
-            MenuOneLane3.ForeColor = SystemColors.Control;
-            MenuOneLane3.Location = new Point(104, 274);
-            MenuOneLane3.Margin = new Padding(4, 0, 4, 0);
-            MenuOneLane3.Name = "MenuOneLane3";
-            MenuOneLane3.Size = new Size(18, 104);
-            MenuOneLane3.TabIndex = 71;
-            MenuOneLane3.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // MenuOneLane2
-            // 
-            MenuOneLane2.BackColor = Color.White;
-            MenuOneLane2.ForeColor = SystemColors.Control;
-            MenuOneLane2.Location = new Point(104, 113);
-            MenuOneLane2.Margin = new Padding(4, 0, 4, 0);
-            MenuOneLane2.Name = "MenuOneLane2";
-            MenuOneLane2.Size = new Size(18, 104);
-            MenuOneLane2.TabIndex = 70;
-            MenuOneLane2.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // MenuOneLane1
-            // 
-            MenuOneLane1.BackColor = Color.White;
-            MenuOneLane1.ForeColor = SystemColors.Control;
-            MenuOneLane1.Location = new Point(104, -49);
-            MenuOneLane1.Margin = new Padding(4, 0, 4, 0);
-            MenuOneLane1.Name = "MenuOneLane1";
-            MenuOneLane1.Size = new Size(18, 104);
-            MenuOneLane1.TabIndex = 69;
-            MenuOneLane1.TextAlign = ContentAlignment.TopCenter;
             // 
             // label12
             // 
@@ -563,116 +413,6 @@
             mainCar.TabIndex = 47;
             mainCar.TabStop = false;
             // 
-            // LaneTwo5
-            // 
-            //LaneTwo5.BackColor = Color.White;
-            //LaneTwo5.ForeColor = SystemColors.Control;
-            //LaneTwo5.Location = new Point(337, 609);
-            //LaneTwo5.Margin = new Padding(4, 0, 4, 0);
-            //LaneTwo5.Name = "LaneTwo5";
-            //LaneTwo5.Size = new Size(18, 104);
-            //LaneTwo5.TabIndex = 43;
-            //LaneTwo5.TextAlign = ContentAlignment.TopCenter;
-            //// 
-            //// LaneTwo4
-            //// 
-            //LaneTwo4.BackColor = Color.White;
-            //LaneTwo4.ForeColor = SystemColors.Control;
-            //LaneTwo4.Location = new Point(337, 447);
-            //LaneTwo4.Margin = new Padding(4, 0, 4, 0);
-            //LaneTwo4.Name = "LaneTwo4";
-            //LaneTwo4.Size = new Size(18, 104);
-            //LaneTwo4.TabIndex = 42;
-            //LaneTwo4.TextAlign = ContentAlignment.TopCenter;
-            //// 
-            //// LaneTwo3
-            //// 
-            //LaneTwo3.BackColor = Color.White;
-            //LaneTwo3.ForeColor = SystemColors.Control;
-            //LaneTwo3.Location = new Point(337, 286);
-            //LaneTwo3.Margin = new Padding(4, 0, 4, 0);
-            //LaneTwo3.Name = "LaneTwo3";
-            //LaneTwo3.Size = new Size(18, 104);
-            //LaneTwo3.TabIndex = 41;
-            //LaneTwo3.TextAlign = ContentAlignment.TopCenter;
-            //// 
-            //// LaneTwo2
-            //// 
-            //LaneTwo2.BackColor = Color.White;
-            //LaneTwo2.ForeColor = SystemColors.Control;
-            //LaneTwo2.Location = new Point(337, 124);
-            //LaneTwo2.Margin = new Padding(4, 0, 4, 0);
-            //LaneTwo2.Name = "LaneTwo2";
-            //LaneTwo2.Size = new Size(18, 104);
-            //LaneTwo2.TabIndex = 40;
-            //LaneTwo2.TextAlign = ContentAlignment.TopCenter;
-            //// 
-            //// LaneTwo1
-            //// 
-            //LaneTwo1.BackColor = Color.White;
-            //LaneTwo1.ForeColor = SystemColors.Control;
-            //LaneTwo1.Location = new Point(337, -37);
-            //LaneTwo1.Margin = new Padding(4, 0, 4, 0);
-            //LaneTwo1.Name = "LaneTwo1";
-            //LaneTwo1.Size = new Size(18, 104);
-            //LaneTwo1.TabIndex = 39;
-            //LaneTwo1.TextAlign = ContentAlignment.TopCenter;
-            //// 
-            //// LaneOne5
-            //// 
-            //LaneOne5.BackColor = Color.White;
-            //LaneOne5.ForeColor = SystemColors.Control;
-            //LaneOne5.Location = new Point(104, 609);
-            //LaneOne5.Margin = new Padding(4, 0, 4, 0);
-            //LaneOne5.Name = "LaneOne5";
-            //LaneOne5.Size = new Size(18, 104);
-            //LaneOne5.TabIndex = 38;
-            //LaneOne5.TextAlign = ContentAlignment.TopCenter;
-            //// 
-            //// LaneOne4
-            //// 
-            //LaneOne4.BackColor = Color.White;
-            //LaneOne4.ForeColor = SystemColors.Control;
-            //LaneOne4.Location = new Point(104, 448);
-            //LaneOne4.Margin = new Padding(4, 0, 4, 0);
-            //LaneOne4.Name = "LaneOne4";
-            //LaneOne4.Size = new Size(18, 104);
-            //LaneOne4.TabIndex = 37;
-            //LaneOne4.TextAlign = ContentAlignment.TopCenter;
-            //// 
-            //// LaneOne3
-            //// 
-            //LaneOne3.BackColor = Color.White;
-            //LaneOne3.ForeColor = SystemColors.Control;
-            //LaneOne3.Location = new Point(104, 286);
-            //LaneOne3.Margin = new Padding(4, 0, 4, 0);
-            //LaneOne3.Name = "LaneOne3";
-            //LaneOne3.Size = new Size(18, 104);
-            //LaneOne3.TabIndex = 36;
-            //LaneOne3.TextAlign = ContentAlignment.TopCenter;
-            //// 
-            //// LaneOne2
-            //// 
-            //LaneOne2.BackColor = Color.White;
-            //LaneOne2.ForeColor = SystemColors.Control;
-            //LaneOne2.Location = new Point(104, 124);
-            //LaneOne2.Margin = new Padding(4, 0, 4, 0);
-            //LaneOne2.Name = "LaneOne2";
-            //LaneOne2.Size = new Size(18, 104);
-            //LaneOne2.TabIndex = 35;
-            //LaneOne2.TextAlign = ContentAlignment.TopCenter;
-            //// 
-            //// LaneOne1
-            //// 
-            //LaneOne1.BackColor = Color.White;
-            //LaneOne1.ForeColor = SystemColors.Control;
-            //LaneOne1.Location = new Point(104, -37);
-            //LaneOne1.Margin = new Padding(4, 0, 4, 0);
-            //LaneOne1.Name = "LaneOne1";
-            //LaneOne1.Size = new Size(18, 104);
-            //LaneOne1.TabIndex = 34;
-            //LaneOne1.TextAlign = ContentAlignment.TopCenter;
-            // 
             // MiddleLane
             // 
             MiddleLane.BackColor = Color.White;
@@ -735,16 +475,7 @@
         #endregion
         private System.Windows.Forms.Timer timerRoad;
 		private System.Windows.Forms.Panel panelGame;
-		private System.Windows.Forms.Label LaneTwo5;
-		private System.Windows.Forms.Label LaneTwo4;
-		private System.Windows.Forms.Label LaneTwo3;
-		private System.Windows.Forms.Label LaneTwo2;
-		private System.Windows.Forms.Label LaneTwo1;
-		private System.Windows.Forms.Label LaneOne5;
-		private System.Windows.Forms.Label LaneOne4;
-		private System.Windows.Forms.Label LaneOne3;
-		private System.Windows.Forms.Label LaneOne2;
-		private System.Windows.Forms.Label LaneOne1;
+		
 		private System.Windows.Forms.Label MiddleLane;
 		private System.Windows.Forms.PictureBox towardCar2;
 		private System.Windows.Forms.PictureBox towardCar3;
@@ -772,16 +503,7 @@
 		private PictureBox CarMenu1;
 		private PictureBox CarMenu3;
 		private PictureBox CarMenu2;
-		private Label MenuTwoLane5;
-		private Label MenuTwoLane4;
-		private Label MenuTwoLane3;
-		private Label MenuTwoLane2;
-		private Label MenuTwoLane1;
-		private Label MenuOneLane5;
-		private Label MenuOneLane4;
-		private Label MenuOneLane3;
-		private Label MenuOneLane2;
-		private Label MenuOneLane1;
+		
 		private Label label12;
 	}
 }
