@@ -165,7 +165,7 @@ namespace Race
 
                     coin.Location = GetNewPosition(coin.Width);
                 }
-            }            
+            }
         }
 
 
@@ -359,42 +359,44 @@ namespace Race
         private List<PictureBox> CreateCoins()
         {
             var coins = new List<PictureBox>();
-            for(int i = 0;i < countCoins; i++)
+            int sizeCoin = 40;
+
+            for (int i = 0; i < countCoins; i++)
             {
                 var coin = new PictureBox();
-                int sizeCoin = 40;
-
                 coin.BackColor = Color.Transparent;
                 coin.Image = Resources.Coin;
-                coin.Margin = new Padding(4);
                 coin.Size = new Size(sizeCoin, sizeCoin);
-                coin.SizeMode = PictureBoxSizeMode.Zoom;               
+                coin.SizeMode = PictureBoxSizeMode.Zoom;
                 coin.Location = GetNewPosition(sizeCoin);
-               
+
                 coins.Add(coin);
             }
             return coins;
         }
 
+        /// <summary>
+        /// Генерация машинок
+        /// </summary>
+        /// <returns>Список PictureBox из трех машинок</returns>
         private List<PictureBox> CreateCar()
         {
             var cars = new List<PictureBox>(countCars);
             int widthCar = 59;
             int heightCar = 127;
 
-            for(int i = 0; i < countCars; i++)
+            for (int i = 0; i < countCars; i++)
             {
                 var car = new PictureBox();
                 car.BackColor = Color.Transparent;
                 car.Image = imagesCars[i];
-                car.Location = new Point(375, 30);
-                //car.Margin = new Padding(4);
-                //car.Name = "CarMenu3";
-                car.Size = new Size(59, 127);
+                car.Size = new Size(widthCar, heightCar);
                 car.SizeMode = PictureBoxSizeMode.Zoom;
-                
-                car.TabStop = false;
+                car.Location = GetNewPosition(widthCar);
+
+                cars.Add(car);
             }
+            return cars;
         }
     }
 }
