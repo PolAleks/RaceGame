@@ -12,9 +12,13 @@
         // Прерывистая разметка в меню
         List<Label> linesMenu;
 
+        // Монеты
+        List<PictureBox> coins;
+        int countCoins = 3;
+
         Random r = new Random();
         int score = 0;
-        int coins = 0;
+        int collectedCoins = 0;
         int carSpeed = 2;
 
         /// <summary>
@@ -32,43 +36,42 @@
 
             MoveLines(linesGame);
 
-            foreach (var line in linesGame)
-            {
-                line.Top += carSpeed;
-                if (line.Top >= Height)
-                {
-                    line.Top = -line.Height;
-                }
+            MoveCoin();
 
-                if (carSpeed != 0)
-                    score++;
-
-            }
-
-
-            #region Механизм генерации монет в верху в новом месте по оси X после выхода за экран нижней границы формы
-            Coin1.Top += carSpeed;
-            if (Coin1.Top > Height)
-            {
-                Coin1.Top = -Coin1.Height;
-                Coin1.Left = r.Next(0, Width - Coin1.Width);
-            }
-            Coin2.Top += carSpeed;
-            if (Coin2.Top > Height)
-            {
-                Coin2.Top = -Coin2.Height;
-                Coin2.Left = r.Next(0, Width - Coin2.Width);
-            }
-            Coin3.Top += carSpeed;
-            if (Coin3.Top > Height)
-            {
-                Coin3.Top = -Coin3.Height;
-                Coin3.Left = r.Next(0, Width - Coin3.Width);
-            }
-            #endregion
-            coinsCollect();
+            CollectCoins();
         }
 
+        /// <summary>
+        /// Анимация движения монеток на игровом поле 
+        /// </summary>
+        private void MoveCoin()
+        {
+            foreach (var coin in coins)
+            {
+                coin.Top += carSpeed;
+                if (coin.Top > Height)
+                {
+                    coin.Location = GetPositionCoin(coin.Width);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Генерация стартовой позиции монетки
+        /// </summary>
+        /// <param name="widthCoin">Возвращает Point</param>
+        /// <returns></returns>
+        private Point GetPositionCoin(int widthCoin)
+        {
+            int x = r.Next(0, Width - widthCoin);
+            int y = -widthCoin;
+            return new Point(x, y);
+        }
+
+        /// <summary>
+        /// Анимацию движения дорожней разметки
+        /// </summary>
+        /// <param name="lines"></param>
         private void MoveLines(List<Label> lines)
         {
             foreach (var line in lines)
@@ -82,38 +85,30 @@
         /// <summary>
         /// Метод подсчитывающий кол-во собранных монеток
         /// </summary>
-        void coinsCollect()
+        void CollectCoins()
         {
-            if (mainCar.Bounds.IntersectsWith(Coin1.Bounds))
+            foreach (var coin in coins)
             {
-                coins++;
-                labelCoins.Text = "Coins: " + coins;
-                Coin1.Top = -Coin1.Height;
-                Coin1.Left = r.Next(0, 120);
-            }
-            if (mainCar.Bounds.IntersectsWith(Coin2.Bounds))
-            {
-                coins++;
-                labelCoins.Text = "Coins: " + coins;
-                Coin2.Top = -Coin2.Height;
-                Coin2.Left = r.Next(120, 240);
-            }
-            if (mainCar.Bounds.IntersectsWith(Coin3.Bounds))
-            {
-                coins++;
-                labelCoins.Text = "Coins: " + coins;
-                Coin3.Top = -Coin3.Height;
-                Coin3.Left = r.Next(240, 300);
-            }
+                if (mainCar.Bounds.IntersectsWith(coin.Bounds))
+                {
+                    collectedCoins++;
+                    labelCoins.Text = "Coins: " + collectedCoins;
+
+                    coin.Location = GetPositionCoin(coin.Width);
+                }
+            }            
         }
 
         /// <summary>
-        /// Инициализация разметки и запуск движения на панели меню
+        /// Инициализация разметки, монет и запуск анимации движения в панели меню
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void RaceGame_Load(object sender, EventArgs e)
         {
+            coins = CreateCoins();
+            panelGame.Controls.AddRange(coins.ToArray());
+            
             linesGame = CreateLines();
             panelGame.Controls.AddRange(linesGame.ToArray());
 
@@ -197,7 +192,7 @@
         {
             timerRoad.Stop();
             timerTowardCars.Stop();
-            if (coins < 15)
+            if (collectedCoins < 15)
             {
                 DialogResult dd = MessageBox.Show("Game Over!", "Приехали!");
                 panelPause.Show();
@@ -219,8 +214,8 @@
 
         private void Restart()
         {
-            coins -= 15;
-            labelCoins.Text = "Coins: " + coins;
+            collectedCoins -= 15;
+            labelCoins.Text = "Coins: " + collectedCoins;
             carSpeed = 2;
             timerRoad.Start();
             timerTowardCars.Start();
@@ -234,8 +229,9 @@
         private void StartGame()
         {
             score = 0;
-            coins = 0;
+            collectedCoins = 0;
             carSpeed = 2;
+
             timerRoad.Start();
             timerTowardCars.Start();
             towardCar1.Top = -towardCar1.Height;
@@ -339,6 +335,26 @@
                 }
             }
             return lines;
+        }
+
+        private List<PictureBox> CreateCoins()
+        {
+            var coins = new List<PictureBox>();
+            for(int i = 0;i < countCoins; i++)
+            {
+                var coin = new PictureBox();
+                int sizeCoin = 40;
+
+                coin.BackColor = Color.Transparent;
+                coin.Image = Properties.Resources.Coin;
+                coin.Margin = new Padding(4);
+                coin.Size = new Size(sizeCoin, sizeCoin);
+                coin.SizeMode = PictureBoxSizeMode.Zoom;               
+                coin.Location = GetPositionCoin(sizeCoin);
+               
+                coins.Add(coin);
+            }
+            return coins;
         }
 
     }
