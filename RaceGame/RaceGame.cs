@@ -1,4 +1,6 @@
-﻿namespace Race
+﻿using Race.Properties;
+
+namespace Race
 {
     public partial class RaceGame : Form
     {
@@ -15,14 +17,17 @@
         // Монеты
         private List<PictureBox> coins;
         private int countCoins = 3;
+        private int collectedCoins = 0;
 
+        // Машины
         private List<PictureBox> carGame;
         private List<PictureBox> carMenu;
+        private int countCars = 3;
+        private int carSpeed = 2;
+        private Bitmap[] imagesCars;
 
         Random r = new Random();
         int score = 0;
-        int collectedCoins = 0;
-        int carSpeed = 2;
 
         /// <summary>
         /// Инициализация разметки, монет и запуск анимации движения в панели меню
@@ -39,6 +44,8 @@
 
             linesMenu = CreateLines();
             panelMenu.Controls.AddRange(linesMenu.ToArray());
+
+            imagesCars = new Bitmap[] { Resources.towardsCar1, Resources.towardsCar2, Resources.towardsCar3 };
 
             timerRoad.Stop();
             timerTowardCars.Stop();
@@ -105,12 +112,13 @@
         /// <summary>
         /// Генерация стартовой позиции монетки
         /// </summary>
-        /// <param name="widthCoin">Возвращает Point</param>
+        /// <param name="widthItem">Возвращает Point</param>
         /// <returns></returns>
-        private Point GetPositionCoin(int widthCoin)
+        private Point GetNewPosition(int widthItem)
         {
-            int x = r.Next(0, Width - widthCoin);
-            int y = -widthCoin;
+            int x = r.Next(widthItem, Width - widthItem);
+            int y = -widthItem;
+
             return new Point(x, y);
         }
 
@@ -138,7 +146,7 @@
                 coin.Top += carSpeed;
                 if (coin.Top > Height)
                 {
-                    coin.Location = GetPositionCoin(coin.Width);
+                    coin.Location = GetNewPosition(coin.Width);
                 }
             }
         }
@@ -155,7 +163,7 @@
                     collectedCoins++;
                     labelCoins.Text = "Coins: " + collectedCoins;
 
-                    coin.Location = GetPositionCoin(coin.Width);
+                    coin.Location = GetNewPosition(coin.Width);
                 }
             }            
         }
@@ -357,15 +365,36 @@
                 int sizeCoin = 40;
 
                 coin.BackColor = Color.Transparent;
-                coin.Image = Properties.Resources.Coin;
+                coin.Image = Resources.Coin;
                 coin.Margin = new Padding(4);
                 coin.Size = new Size(sizeCoin, sizeCoin);
                 coin.SizeMode = PictureBoxSizeMode.Zoom;               
-                coin.Location = GetPositionCoin(sizeCoin);
+                coin.Location = GetNewPosition(sizeCoin);
                
                 coins.Add(coin);
             }
             return coins;
+        }
+
+        private List<PictureBox> CreateCar()
+        {
+            var cars = new List<PictureBox>(countCars);
+            int widthCar = 59;
+            int heightCar = 127;
+
+            for(int i = 0; i < countCars; i++)
+            {
+                var car = new PictureBox();
+                car.BackColor = Color.Transparent;
+                car.Image = imagesCars[i];
+                car.Location = new Point(375, 30);
+                //car.Margin = new Padding(4);
+                //car.Name = "CarMenu3";
+                car.Size = new Size(59, 127);
+                car.SizeMode = PictureBoxSizeMode.Zoom;
+                
+                car.TabStop = false;
+            }
         }
     }
 }
