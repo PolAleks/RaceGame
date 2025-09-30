@@ -7,19 +7,43 @@
             InitializeComponent();
         }
         // Прерывистая разметка в игре
-        List<Label> linesGame;
+        private List<Label> linesGame;
 
         // Прерывистая разметка в меню
-        List<Label> linesMenu;
+        private List<Label> linesMenu;
 
         // Монеты
-        List<PictureBox> coins;
-        int countCoins = 3;
+        private List<PictureBox> coins;
+        private int countCoins = 3;
+
+        private List<PictureBox> carGame;
+        private List<PictureBox> carMenu;
 
         Random r = new Random();
         int score = 0;
         int collectedCoins = 0;
         int carSpeed = 2;
+
+        /// <summary>
+        /// Инициализация разметки, монет и запуск анимации движения в панели меню
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RaceGame_Load(object sender, EventArgs e)
+        {
+            coins = CreateCoins();
+            panelGame.Controls.AddRange(coins.ToArray());
+
+            linesGame = CreateLines();
+            panelGame.Controls.AddRange(linesGame.ToArray());
+
+            linesMenu = CreateLines();
+            panelMenu.Controls.AddRange(linesMenu.ToArray());
+
+            timerRoad.Stop();
+            timerTowardCars.Stop();
+            panelMenu.Show();
+        }
 
         /// <summary>
         /// Обработчик движения трассы(полосы, монеты) в процессе игры 
@@ -36,123 +60,11 @@
 
             MoveLines(linesGame);
 
-            MoveCoin();
+            MoveCoins();
 
             CollectCoins();
         }
 
-        /// <summary>
-        /// Анимация движения монеток на игровом поле 
-        /// </summary>
-        private void MoveCoin()
-        {
-            foreach (var coin in coins)
-            {
-                coin.Top += carSpeed;
-                if (coin.Top > Height)
-                {
-                    coin.Location = GetPositionCoin(coin.Width);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Генерация стартовой позиции монетки
-        /// </summary>
-        /// <param name="widthCoin">Возвращает Point</param>
-        /// <returns></returns>
-        private Point GetPositionCoin(int widthCoin)
-        {
-            int x = r.Next(0, Width - widthCoin);
-            int y = -widthCoin;
-            return new Point(x, y);
-        }
-
-        /// <summary>
-        /// Анимацию движения дорожней разметки
-        /// </summary>
-        /// <param name="lines"></param>
-        private void MoveLines(List<Label> lines)
-        {
-            foreach (var line in lines)
-            {
-                line.Top += carSpeed;
-                if (line.Top >= Height)
-                    line.Top = -line.Height;
-            }
-        }
-
-        /// <summary>
-        /// Метод подсчитывающий кол-во собранных монеток
-        /// </summary>
-        void CollectCoins()
-        {
-            foreach (var coin in coins)
-            {
-                if (mainCar.Bounds.IntersectsWith(coin.Bounds))
-                {
-                    collectedCoins++;
-                    labelCoins.Text = "Coins: " + collectedCoins;
-
-                    coin.Location = GetPositionCoin(coin.Width);
-                }
-            }            
-        }
-
-        /// <summary>
-        /// Инициализация разметки, монет и запуск анимации движения в панели меню
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RaceGame_Load(object sender, EventArgs e)
-        {
-            coins = CreateCoins();
-            panelGame.Controls.AddRange(coins.ToArray());
-            
-            linesGame = CreateLines();
-            panelGame.Controls.AddRange(linesGame.ToArray());
-
-            linesMenu = CreateLines();
-            panelMenu.Controls.AddRange(linesMenu.ToArray());
-
-            timerRoad.Stop();
-            timerTowardCars.Stop();
-            panelMenu.Show();
-        }
-
-        private void RaceGame_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (carSpeed != 0)
-            {
-                if (e.KeyCode == Keys.Right)
-                {
-                    //380
-                    if (mainCar.Right < 500)
-                        mainCar.Left += 9;
-                }
-                if (e.KeyCode == Keys.Left)
-                {
-                    if (mainCar.Left > 0)
-                        mainCar.Left -= 9;
-                }
-            }
-            if (e.KeyCode == Keys.Up)
-            {
-                if (carSpeed < 21)
-                    carSpeed++;
-            }
-            if (e.KeyCode == Keys.Down)
-            {
-                if (carSpeed > 0)
-                    carSpeed--;
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                timerRoad.Enabled = false;
-                timerTowardCars.Enabled = false;
-                panelPause.Show();
-            }
-        }
         /// <summary>
         /// Обработчик движения встречных машин в процессе игры
         /// </summary>
@@ -188,6 +100,101 @@
             if (mainCar.Bounds.IntersectsWith(towardCar3.Bounds))
                 GameOver();
         }
+
+
+        /// <summary>
+        /// Генерация стартовой позиции монетки
+        /// </summary>
+        /// <param name="widthCoin">Возвращает Point</param>
+        /// <returns></returns>
+        private Point GetPositionCoin(int widthCoin)
+        {
+            int x = r.Next(0, Width - widthCoin);
+            int y = -widthCoin;
+            return new Point(x, y);
+        }
+
+        /// <summary>
+        /// Анимацию движения дорожней разметки
+        /// </summary>
+        /// <param name="lines"></param>
+        private void MoveLines(List<Label> lines)
+        {
+            foreach (var line in lines)
+            {
+                line.Top += carSpeed;
+                if (line.Top >= Height)
+                    line.Top = -line.Height;
+            }
+        }
+
+        /// <summary>
+        /// Анимация движения монеток на игровом поле 
+        /// </summary>
+        private void MoveCoins()
+        {
+            foreach (var coin in coins)
+            {
+                coin.Top += carSpeed;
+                if (coin.Top > Height)
+                {
+                    coin.Location = GetPositionCoin(coin.Width);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Подсчет собранных монеток
+        /// </summary>
+        void CollectCoins()
+        {
+            foreach (var coin in coins)
+            {
+                if (mainCar.Bounds.IntersectsWith(coin.Bounds))
+                {
+                    collectedCoins++;
+                    labelCoins.Text = "Coins: " + collectedCoins;
+
+                    coin.Location = GetPositionCoin(coin.Width);
+                }
+            }            
+        }
+
+
+
+        private void RaceGame_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (carSpeed != 0)
+            {
+                if (e.KeyCode == Keys.Right)
+                {
+                    if (mainCar.Right < 500)
+                        mainCar.Left += 9;
+                }
+                if (e.KeyCode == Keys.Left)
+                {
+                    if (mainCar.Left > 0)
+                        mainCar.Left -= 9;
+                }
+            }
+            if (e.KeyCode == Keys.Up)
+            {
+                if (carSpeed < 21)
+                    carSpeed++;
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                if (carSpeed > 0)
+                    carSpeed--;
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                timerRoad.Enabled = false;
+                timerTowardCars.Enabled = false;
+                panelPause.Show();
+            }
+        }
+
         private void GameOver()
         {
             timerRoad.Stop();
@@ -309,7 +316,7 @@
         /// <summary>
         /// Генерация дорожной разметки
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Спиосок PictureBox из 5 линий</returns>
         private List<Label> CreateLines()
         {
             int startX = 104;
@@ -337,6 +344,10 @@
             return lines;
         }
 
+        /// <summary>
+        /// Генерация монеток
+        /// </summary>
+        /// <returns>Спиосок PictureBox из трех монет</returns>
         private List<PictureBox> CreateCoins()
         {
             var coins = new List<PictureBox>();
@@ -356,7 +367,6 @@
             }
             return coins;
         }
-
     }
 }
 

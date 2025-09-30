@@ -52,9 +52,6 @@
             towardCar2 = new PictureBox();
             towardCar1 = new PictureBox();
             towardCar3 = new PictureBox();
-            //Coin3 = new PictureBox();
-            //Coin2 = new PictureBox();
-            //Coin1 = new PictureBox();
             buttonPause = new Button();
             mainCar = new PictureBox();
             MiddleLane = new Label();
@@ -70,9 +67,6 @@
             ((System.ComponentModel.ISupportInitialize)towardCar2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)towardCar1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)towardCar3).BeginInit();
-            //((System.ComponentModel.ISupportInitialize)Coin3).BeginInit();
-            //((System.ComponentModel.ISupportInitialize)Coin2).BeginInit();
-            //((System.ComponentModel.ISupportInitialize)Coin1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mainCar).BeginInit();
             SuspendLayout();
             // 
@@ -92,9 +86,6 @@
             panelGame.Controls.Add(towardCar2);
             panelGame.Controls.Add(towardCar1);
             panelGame.Controls.Add(towardCar3);
-            //panelGame.Controls.Add(Coin3);
-            //panelGame.Controls.Add(Coin2);
-            //panelGame.Controls.Add(Coin1);
             panelGame.Controls.Add(buttonPause);
             panelGame.Controls.Add(mainCar);
             panelGame.Controls.Add(MiddleLane);
@@ -351,42 +342,6 @@
             towardCar3.SizeMode = PictureBoxSizeMode.Zoom;
             towardCar3.TabIndex = 50;
             towardCar3.TabStop = false;
-            //// 
-            //// Coin3
-            //// 
-            //Coin3.BackColor = Color.Transparent;
-            //Coin3.Image = Properties.Resources.Coin;
-            //Coin3.Location = new Point(375, 257);
-            //Coin3.Margin = new Padding(4);
-            //Coin3.Name = "Coin3";
-            //Coin3.Size = new Size(39, 37);
-            //Coin3.SizeMode = PictureBoxSizeMode.Zoom;
-            //Coin3.TabIndex = 54;
-            //Coin3.TabStop = false;
-            //// 
-            //// Coin2
-            //// 
-            //Coin2.BackColor = Color.Transparent;
-            //Coin2.Image = Properties.Resources.Coin;
-            //Coin2.Location = new Point(258, 180);
-            //Coin2.Margin = new Padding(4);
-            //Coin2.Name = "Coin2";
-            //Coin2.Size = new Size(39, 37);
-            //Coin2.SizeMode = PictureBoxSizeMode.Zoom;
-            //Coin2.TabIndex = 53;
-            //Coin2.TabStop = false;
-            //// 
-            //// Coin1
-            //// 
-            //Coin1.BackColor = Color.Transparent;
-            //Coin1.Image = Properties.Resources.Coin;
-            //Coin1.Location = new Point(129, 291);
-            //Coin1.Margin = new Padding(4);
-            //Coin1.Name = "Coin1";
-            //Coin1.Size = new Size(39, 37);
-            //Coin1.SizeMode = PictureBoxSizeMode.Zoom;
-            //Coin1.TabIndex = 52;
-            //Coin1.TabStop = false;
             // 
             // buttonPause
             // 
@@ -465,9 +420,6 @@
             ((System.ComponentModel.ISupportInitialize)towardCar2).EndInit();
             ((System.ComponentModel.ISupportInitialize)towardCar1).EndInit();
             ((System.ComponentModel.ISupportInitialize)towardCar3).EndInit();
-            //((System.ComponentModel.ISupportInitialize)Coin3).EndInit();
-            //((System.ComponentModel.ISupportInitialize)Coin2).EndInit();
-            //((System.ComponentModel.ISupportInitialize)Coin1).EndInit();
             ((System.ComponentModel.ISupportInitialize)mainCar).EndInit();
             ResumeLayout(false);
         }
@@ -475,7 +427,6 @@
         #endregion
         private System.Windows.Forms.Timer timerRoad;
 		private System.Windows.Forms.Panel panelGame;
-		
 		private System.Windows.Forms.Label MiddleLane;
 		private System.Windows.Forms.PictureBox towardCar2;
 		private System.Windows.Forms.PictureBox towardCar3;
@@ -487,9 +438,6 @@
 		private System.Windows.Forms.Button buttonExit;
 		private System.Windows.Forms.Button buttonResume;
 		private System.Windows.Forms.Button buttonPause;
-		//private System.Windows.Forms.PictureBox Coin1;
-		//private System.Windows.Forms.PictureBox Coin3;
-		//private System.Windows.Forms.PictureBox Coin2;
 		private System.Windows.Forms.Panel panelPause;
 		private System.Windows.Forms.PictureBox pictureFlag;
 		private System.Windows.Forms.Label labelCoins;
