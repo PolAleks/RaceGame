@@ -81,7 +81,7 @@ namespace Race
                 car.Top += carSpeed + deltaSpeedTowardCar[i];
                 if (car.Top > Height)
                 {
-                    car.Location = GetNewPosition(car);
+                    car.Location = GetPositonMovingItem(car);
                 }
 
                 if (mainCar.Bounds.IntersectsWith(car.Bounds))
@@ -92,24 +92,7 @@ namespace Race
         }
 
 
-        /// <summary>
-        /// Генерация стартовой позиции движущегося элемента
-        /// </summary>
-        /// <param name="widthItem">Возвращает Point</param>
-        /// <returns></returns>
-        private Point GetNewPosition(PictureBox item, bool repeat = true)
-        {
-            int widthZone = Width / countCars;
-            int zoneItem = Convert.ToInt32(item.AccessibleName);
-
-            int x = r.Next(widthZone * zoneItem, widthZone * (zoneItem + 1));
-            int y = -item.Height;
-
-            if (!repeat) 
-                y = r.Next(-item.Height * zoneItem, item.Height);
-
-            return new Point(x, y);            
-        }
+       
 
 
         /// <summary>
@@ -137,7 +120,7 @@ namespace Race
                 coin.Top += carSpeed;
                 if (coin.Top > Height)
                 {
-                    coin.Location = GetNewPosition(coin);
+                    coin.Location = GetPositonMovingItem(coin);
                 }
             }
         }
@@ -155,7 +138,7 @@ namespace Race
                     collectedCoins++;
                     labelCoins.Text = "Coins: " + collectedCoins;
 
-                    coin.Location = GetNewPosition(coin);
+                    coin.Location = GetPositonMovingItem(coin);
                 }
             }
         }
@@ -227,7 +210,7 @@ namespace Race
             timerTowardCars.Start();
             foreach (var car in carGame)
             {
-                car.Location = GetNewPosition(car);
+                car.Location = GetPositonMovingItem(car);
             }
         }
         private void StartGame()
@@ -241,7 +224,7 @@ namespace Race
 
             foreach (var car in carGame)
             {
-                car.Location = GetNewPosition(car);
+                car.Location = GetPositonMovingItem(car);
             }
 
             panelPause.Hide();
@@ -341,6 +324,7 @@ namespace Race
             return lines;
         }
 
+
         /// <summary>
         /// Генерация монеток
         /// </summary>
@@ -358,12 +342,13 @@ namespace Race
                 coin.Size = new Size(sizeCoin, sizeCoin);
                 coin.SizeMode = PictureBoxSizeMode.Zoom;
                 coin.AccessibleName = i.ToString();
-                coin.Location = GetNewPosition(coin, false);
+                coin.Location = GetPositonMovingItem(coin, false);
 
                 coins.Add(coin);
             }
             return coins;
         }
+
 
         /// <summary>
         /// Генерация машинок
@@ -383,11 +368,31 @@ namespace Race
                 car.Size = new Size(widthCar, heightCar);
                 car.SizeMode = PictureBoxSizeMode.Zoom;
                 car.AccessibleName = i.ToString();
-                car.Location = GetNewPosition(car, false);
+                car.Location = GetPositonMovingItem(car, false);
 
                 cars.Add(car);
             }
             return cars;
+        }
+
+
+        /// <summary>
+        /// Генерация стартовой позиции движущегося элемента
+        /// </summary>
+        /// <param name="widthItem">Возвращает Point</param>
+        /// <returns></returns>
+        private Point GetPositonMovingItem(PictureBox item, bool repeat = true)
+        {
+            int widthZone = Width / countCars;
+            int zoneItem = Convert.ToInt32(item.AccessibleName);
+
+            int x = r.Next(widthZone * zoneItem, widthZone * (zoneItem + 1));
+            int y = -item.Height;
+
+            if (!repeat)
+                y = r.Next(-item.Height * zoneItem, item.Height);
+
+            return new Point(x, y);
         }
 
         private void InitialTowardCarsAndCoins()
