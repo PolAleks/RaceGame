@@ -49,9 +49,6 @@
             labelScore = new Label();
             labelCoins = new Label();
             label = new Label();
-            towardCar2 = new PictureBox();
-            towardCar1 = new PictureBox();
-            towardCar3 = new PictureBox();
             buttonPause = new Button();
             mainCar = new PictureBox();
             MiddleLane = new Label();
@@ -64,16 +61,13 @@
             ((System.ComponentModel.ISupportInitialize)CarMenu3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CarMenu2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureFlag).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)towardCar2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)towardCar1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)towardCar3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mainCar).BeginInit();
             SuspendLayout();
             // 
             // timerRoad
             // 
             timerRoad.Enabled = true;
-            timerRoad.Interval = 1;
+            timerRoad.Interval = 10;
             timerRoad.Tick += timerRoad_Tick;
             // 
             // panelGame
@@ -83,9 +77,6 @@
             panelGame.Controls.Add(labelScore);
             panelGame.Controls.Add(labelCoins);
             panelGame.Controls.Add(label);
-            panelGame.Controls.Add(towardCar2);
-            panelGame.Controls.Add(towardCar1);
-            panelGame.Controls.Add(towardCar3);
             panelGame.Controls.Add(buttonPause);
             panelGame.Controls.Add(mainCar);
             panelGame.Controls.Add(MiddleLane);
@@ -307,42 +298,6 @@
             label.Size = new Size(451, 68);
             label.TabIndex = 55;
             // 
-            // towardCar2
-            // 
-            towardCar2.BackColor = Color.Transparent;
-            towardCar2.Image = Properties.Resources.towardsCar2;
-            towardCar2.Location = new Point(14, 26);
-            towardCar2.Margin = new Padding(4);
-            towardCar2.Name = "towardCar2";
-            towardCar2.Size = new Size(59, 127);
-            towardCar2.SizeMode = PictureBoxSizeMode.Zoom;
-            towardCar2.TabIndex = 49;
-            towardCar2.TabStop = false;
-            // 
-            // towardCar1
-            // 
-            towardCar1.BackColor = Color.Transparent;
-            towardCar1.Image = Properties.Resources.towardsCar1;
-            towardCar1.Location = new Point(150, 15);
-            towardCar1.Margin = new Padding(4);
-            towardCar1.Name = "towardCar1";
-            towardCar1.Size = new Size(59, 127);
-            towardCar1.SizeMode = PictureBoxSizeMode.Zoom;
-            towardCar1.TabIndex = 48;
-            towardCar1.TabStop = false;
-            // 
-            // towardCar3
-            // 
-            towardCar3.BackColor = Color.Transparent;
-            towardCar3.Image = Properties.Resources.towardsCar3;
-            towardCar3.Location = new Point(375, 41);
-            towardCar3.Margin = new Padding(4);
-            towardCar3.Name = "towardCar3";
-            towardCar3.Size = new Size(59, 127);
-            towardCar3.SizeMode = PictureBoxSizeMode.Zoom;
-            towardCar3.TabIndex = 50;
-            towardCar3.TabStop = false;
-            // 
             // buttonPause
             // 
             buttonPause.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold, GraphicsUnit.Point);
@@ -359,7 +314,7 @@
             // 
             mainCar.BackColor = Color.Transparent;
             mainCar.BackgroundImageLayout = ImageLayout.None;
-            mainCar.Image = (Image)resources.GetObject("mainCar.Image");
+            mainCar.Image = Properties.Resources.mainCar1;
             mainCar.Location = new Point(258, 508);
             mainCar.Margin = new Padding(4);
             mainCar.Name = "mainCar";
@@ -382,13 +337,13 @@
             // timerTowardCars
             // 
             timerTowardCars.Enabled = true;
-            timerTowardCars.Interval = 1;
+            timerTowardCars.Interval = 10;
             timerTowardCars.Tick += timerTowardCars_Tick;
             // 
             // timerMenu
             // 
             timerMenu.Enabled = true;
-            timerMenu.Interval = 1;
+            timerMenu.Interval = 10;
             timerMenu.Tick += timerMenu_Tick;
             // 
             // RaceGame
@@ -417,9 +372,6 @@
             ((System.ComponentModel.ISupportInitialize)CarMenu3).EndInit();
             ((System.ComponentModel.ISupportInitialize)CarMenu2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureFlag).EndInit();
-            ((System.ComponentModel.ISupportInitialize)towardCar2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)towardCar1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)towardCar3).EndInit();
             ((System.ComponentModel.ISupportInitialize)mainCar).EndInit();
             ResumeLayout(false);
         }
@@ -428,9 +380,9 @@
         private System.Windows.Forms.Timer timerRoad;
 		private System.Windows.Forms.Panel panelGame;
 		private System.Windows.Forms.Label MiddleLane;
-		private System.Windows.Forms.PictureBox towardCar2;
-		private System.Windows.Forms.PictureBox towardCar3;
-		private System.Windows.Forms.PictureBox towardCar1;
+		//private System.Windows.Forms.PictureBox towardCar2;
+		//private System.Windows.Forms.PictureBox towardCar3;
+		//private System.Windows.Forms.PictureBox towardCar1;
 		private System.Windows.Forms.PictureBox mainCar;
 		private System.Windows.Forms.Timer timerTowardCars;
 		private System.Windows.Forms.Timer timerMenu;
@@ -450,8 +402,7 @@
 		private Label label3;
 		private PictureBox CarMenu1;
 		private PictureBox CarMenu3;
-		private PictureBox CarMenu2;
-		
+		private PictureBox CarMenu2;		
 		private Label label12;
 	}
 }

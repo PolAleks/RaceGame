@@ -24,7 +24,8 @@ namespace Race
         private List<PictureBox> carMenu;
         private int countCars = 3;
         private int carSpeed = 2;
-        private Bitmap[] imagesCars;
+        private Image[] imagesCars;
+        private int[] deltaSpeedTowardCar = new int[] { 4, 2, 3 };
 
         Random r = new Random();
         int score = 0;
@@ -36,22 +37,16 @@ namespace Race
         /// <param name="e"></param>
         private void RaceGame_Load(object sender, EventArgs e)
         {
-            coins = CreateCoins();
-            panelGame.Controls.AddRange(coins.ToArray());
+            InitialTowardCarsAndCoins();
 
-            linesGame = CreateLines();
-            panelGame.Controls.AddRange(linesGame.ToArray());
-
-            linesMenu = CreateLines();
-            panelMenu.Controls.AddRange(linesMenu.ToArray());
-
-            imagesCars = new Bitmap[] { Resources.towardsCar1, Resources.towardsCar2, Resources.towardsCar3 };
+            InitialRoadMarking();
 
             timerRoad.Stop();
             timerTowardCars.Stop();
             panelMenu.Show();
         }
 
+      
         /// <summary>
         /// Обработчик движения трассы(полосы, монеты) в процессе игры 
         /// </summary>
@@ -72,6 +67,7 @@ namespace Race
             CollectCoins();
         }
 
+
         /// <summary>
         /// Обработчик движения встречных машин в процессе игры
         /// </summary>
@@ -79,48 +75,42 @@ namespace Race
         /// <param name="e"></param>
         private void timerTowardCars_Tick(object sender, EventArgs e)
         {
-            towardCar1.Top += carSpeed + 4;
-            if (towardCar1.Top > Height)
+            for (int i = 0; i < carGame.Count; i++)
             {
-                towardCar1.Top = -towardCar1.Height;
-                towardCar1.Left = r.Next(0, Width - towardCar1.Width);
-            }
+                var car = carGame[i];
+                car.Top += carSpeed + deltaSpeedTowardCar[i];
+                if (car.Top > Height)
+                {
+                    car.Location = GetNewPosition(car);
+                }
 
-            towardCar2.Top += carSpeed + 2;
-            if (towardCar2.Top > Height)
-            {
-                towardCar2.Top = -towardCar2.Height;
-                towardCar2.Left = r.Next(0, Width - towardCar2.Width);
+                if (mainCar.Bounds.IntersectsWith(car.Bounds))
+                {
+                    GameOver();
+                }
             }
-
-            towardCar3.Top += carSpeed + 3;
-            if (towardCar3.Top > Height)
-            {
-                towardCar3.Top = -towardCar3.Height;
-                towardCar3.Left = r.Next(0, Width - towardCar3.Width);
-            }
-
-            if (mainCar.Bounds.IntersectsWith(towardCar1.Bounds))
-                GameOver();
-            if (mainCar.Bounds.IntersectsWith(towardCar2.Bounds))
-                GameOver();
-            if (mainCar.Bounds.IntersectsWith(towardCar3.Bounds))
-                GameOver();
         }
 
 
         /// <summary>
-        /// Генерация стартовой позиции монетки
+        /// Генерация стартовой позиции движущегося элемента
         /// </summary>
         /// <param name="widthItem">Возвращает Point</param>
         /// <returns></returns>
-        private Point GetNewPosition(int widthItem)
+        private Point GetNewPosition(PictureBox item, bool repeat = true)
         {
-            int x = r.Next(widthItem, Width - widthItem);
-            int y = -widthItem;
+            int widthZone = Width / countCars;
+            int zoneItem = Convert.ToInt32(item.AccessibleName);
 
-            return new Point(x, y);
+            int x = r.Next(widthZone * zoneItem, widthZone * (zoneItem + 1));
+            int y = -item.Height;
+
+            if (!repeat) 
+                y = r.Next(-item.Height * zoneItem, item.Height);
+
+            return new Point(x, y);            
         }
+
 
         /// <summary>
         /// Анимацию движения дорожней разметки
@@ -136,6 +126,7 @@ namespace Race
             }
         }
 
+
         /// <summary>
         /// Анимация движения монеток на игровом поле 
         /// </summary>
@@ -146,15 +137,16 @@ namespace Race
                 coin.Top += carSpeed;
                 if (coin.Top > Height)
                 {
-                    coin.Location = GetNewPosition(coin.Width);
+                    coin.Location = GetNewPosition(coin);
                 }
             }
         }
 
+
         /// <summary>
         /// Подсчет собранных монеток
         /// </summary>
-        void CollectCoins()
+        private void CollectCoins()
         {
             foreach (var coin in coins)
             {
@@ -163,11 +155,10 @@ namespace Race
                     collectedCoins++;
                     labelCoins.Text = "Coins: " + collectedCoins;
 
-                    coin.Location = GetNewPosition(coin.Width);
+                    coin.Location = GetNewPosition(coin);
                 }
             }
         }
-
 
 
         private void RaceGame_KeyDown(object sender, KeyEventArgs e)
@@ -209,7 +200,7 @@ namespace Race
             timerTowardCars.Stop();
             if (collectedCoins < 15)
             {
-                DialogResult dd = MessageBox.Show("Game Over!", "Приехали!");
+                MessageBox.Show("Game Over!", "Приехали!");
                 panelPause.Show();
                 panelMenu.Show();
             }
@@ -234,12 +225,10 @@ namespace Race
             carSpeed = 2;
             timerRoad.Start();
             timerTowardCars.Start();
-            towardCar1.Top = -towardCar1.Height;
-            towardCar1.Left = r.Next(0, Width - towardCar1.Width);
-            towardCar2.Top = -towardCar2.Height;
-            towardCar2.Left = r.Next(0, Width - towardCar2.Width);
-            towardCar3.Top = -towardCar3.Height;
-            towardCar3.Left = r.Next(0, Width - towardCar3.Width);
+            foreach (var car in carGame)
+            {
+                car.Location = GetNewPosition(car);
+            }
         }
         private void StartGame()
         {
@@ -249,12 +238,12 @@ namespace Race
 
             timerRoad.Start();
             timerTowardCars.Start();
-            towardCar1.Top = -towardCar1.Height;
-            towardCar1.Left = r.Next(0, Width - towardCar1.Width);
-            towardCar2.Top = -towardCar2.Height;
-            towardCar2.Left = r.Next(0, Width - towardCar2.Width);
-            towardCar3.Top = -towardCar3.Height;
-            towardCar3.Left = r.Next(0, Width - towardCar3.Width);
+
+            foreach (var car in carGame)
+            {
+                car.Location = GetNewPosition(car);
+            }
+
             panelPause.Hide();
             panelGame.Show();
             panelMenu.Hide();
@@ -368,7 +357,8 @@ namespace Race
                 coin.Image = Resources.Coin;
                 coin.Size = new Size(sizeCoin, sizeCoin);
                 coin.SizeMode = PictureBoxSizeMode.Zoom;
-                coin.Location = GetNewPosition(sizeCoin);
+                coin.AccessibleName = i.ToString();
+                coin.Location = GetNewPosition(coin, false);
 
                 coins.Add(coin);
             }
@@ -392,11 +382,34 @@ namespace Race
                 car.Image = imagesCars[i];
                 car.Size = new Size(widthCar, heightCar);
                 car.SizeMode = PictureBoxSizeMode.Zoom;
-                car.Location = GetNewPosition(widthCar);
+                car.AccessibleName = i.ToString();
+                car.Location = GetNewPosition(car, false);
 
                 cars.Add(car);
             }
             return cars;
+        }
+
+        private void InitialTowardCarsAndCoins()
+        {
+            imagesCars = new Image[] { Resources.towardsCar1, Resources.towardsCar2, Resources.towardsCar3 };
+
+            carGame = CreateCar();
+            panelGame.Controls.AddRange(carGame.ToArray());
+
+            coins = CreateCoins();
+            panelGame.Controls.AddRange(coins.ToArray());
+        }
+
+        private void InitialRoadMarking()
+        {
+            MiddleLane.SendToBack();
+
+            linesGame = CreateLines();
+            panelGame.Controls.AddRange(linesGame.ToArray());
+
+            linesMenu = CreateLines();
+            panelMenu.Controls.AddRange(linesMenu.ToArray());
         }
     }
 }

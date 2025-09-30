@@ -73,6 +73,16 @@ namespace Race.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mainCar1 {
+            get {
+                object obj = ResourceManager.GetObject("mainCar1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap towardsCar1 {
             get {
                 object obj = ResourceManager.GetObject("towardsCar1", resourceCulture);
