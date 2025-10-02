@@ -49,6 +49,8 @@
             buttonPause = new Button();
             mainCar = new PictureBox();
             MiddleLaneGame = new Label();
+            buttonPause = new Button();
+            mainCar = new PictureBox();
             timerTowardCars = new System.Windows.Forms.Timer(components);
             timerMenu = new System.Windows.Forms.Timer(components);
             panelGame.SuspendLayout();

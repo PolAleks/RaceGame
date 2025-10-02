@@ -8,6 +8,7 @@ namespace Race
         {
             InitializeComponent();
         }
+
         // Прерывистая разметка в игре
         private List<Label> linesGame;
 
@@ -53,7 +54,6 @@ namespace Race
             timerTowardCars.Enabled = !timerTowardCars.Enabled;
             timerMenu.Enabled = !timerMenu.Enabled;
         }
-
 
         /// <summary>
         /// Обработчик движения трассы(полосы, монеты) в процессе игры 
@@ -173,6 +173,8 @@ namespace Race
         }
 
 
+
+            
         private void RaceGame_KeyDown(object sender, KeyEventArgs e)
         {
             if (carSpeed != 0)
@@ -258,7 +260,6 @@ namespace Race
             panelGame.Show();
             panelMenu.Hide();
         }
-        
 
         private void ResetCarSpeed() => carSpeed = 2;
         private void ButtonStart_Click(object sender, EventArgs e)
@@ -418,4 +419,3 @@ namespace Race
         }
     }
 }
-
