@@ -170,15 +170,22 @@ namespace Race
         {
             if (carSpeed != 0)
             {
+                int halfWidthCar = mainCar.Width / 2;
+                int leftSideRoad = panelGame.Width;
+
                 if (e.KeyCode == Keys.Right)
                 {
-                    if (mainCar.Right < Width)
+                    if (mainCar.Right < leftSideRoad + halfWidthCar)
                         mainCar.Left += 9;
+                    else
+                        mainCar.Left = -halfWidthCar;
                 }
                 if (e.KeyCode == Keys.Left)
                 {
-                    if (mainCar.Left > 0)
+                    if (mainCar.Left > -halfWidthCar)
                         mainCar.Left -= 9;
+                    else
+                        mainCar.Left = leftSideRoad - halfWidthCar;
                 }
             }
             if (e.KeyCode == Keys.Up)
