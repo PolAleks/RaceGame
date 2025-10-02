@@ -38,9 +38,6 @@
             buttonMenuExit = new Button();
             buttonStart = new Button();
             label3 = new Label();
-            //CarMenu1 = new PictureBox();
-            //CarMenu3 = new PictureBox();
-            //CarMenu2 = new PictureBox();
             label12 = new Label();
             buttonExit = new Button();
             buttonResume = new Button();
@@ -57,16 +54,12 @@
             panelGame.SuspendLayout();
             panelPause.SuspendLayout();
             panelMenu.SuspendLayout();
-            //((System.ComponentModel.ISupportInitialize)CarMenu1).BeginInit();
-            //((System.ComponentModel.ISupportInitialize)CarMenu3).BeginInit();
-            //((System.ComponentModel.ISupportInitialize)CarMenu2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureFlag).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mainCar).BeginInit();
             SuspendLayout();
             // 
             // timerRoad
             // 
-            timerRoad.Enabled = true;
             timerRoad.Interval = 10;
             timerRoad.Tick += timerRoad_Tick;
             // 
@@ -107,9 +100,6 @@
             panelMenu.Controls.Add(buttonMenuExit);
             panelMenu.Controls.Add(buttonStart);
             panelMenu.Controls.Add(label3);
-            //panelMenu.Controls.Add(CarMenu1);
-            //panelMenu.Controls.Add(CarMenu3);
-            //panelMenu.Controls.Add(CarMenu2);
             panelMenu.Controls.Add(label12);
             panelMenu.Location = new Point(0, 0);
             panelMenu.Margin = new Padding(4);
@@ -300,7 +290,6 @@
             // 
             // timerTowardCars
             // 
-            timerTowardCars.Enabled = true;
             timerTowardCars.Interval = 10;
             timerTowardCars.Tick += timerTowardCars_Tick;
             // 

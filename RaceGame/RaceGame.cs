@@ -41,17 +41,17 @@ namespace Race
             InitialCarsMenu();
             InitialRoadMarking();
 
-            timerRoad.Stop();
-            timerTowardCars.Stop();
-            timerMenu.Start();
-
             panelMenu.Show();
         }
 
-        private void InitialCarsMenu()
+        /// <summary>
+        /// Переключение таймеров
+        /// </summary>
+        private void TurningTimer()
         {
-            carMenu = CreateCar();
-            panelMenu.Controls.AddRange(carMenu.ToArray());
+            timerRoad.Enabled = !timerRoad.Enabled;
+            timerTowardCars.Enabled = !timerTowardCars.Enabled;
+            timerMenu.Enabled = !timerMenu.Enabled;
         }
 
 
@@ -69,9 +69,7 @@ namespace Race
                 score++;
 
             MoveLines(linesGame);
-
             MoveCoins();
-
             CollectCoins();
         }
 
@@ -88,7 +86,7 @@ namespace Race
             for (int i = 0; i < carGame.Count; i++)
             {
                 var car = carGame[i];
-                
+
                 if (mainCar.Bounds.IntersectsWith(car.Bounds))
                 {
                     GameOver();
@@ -196,8 +194,8 @@ namespace Race
 
         private void GameOver()
         {
-            timerRoad.Stop();
-            timerTowardCars.Stop();
+            TurningTimer();
+
             if (collectedCoins < 15)
             {
                 MessageBox.Show("Game Over!", "Приехали!");
@@ -222,10 +220,10 @@ namespace Race
         {
             collectedCoins -= 15;
             labelCoins.Text = "Coins: " + collectedCoins;
-            carSpeed = 2;
             
-            timerRoad.Start();
-            timerTowardCars.Start();
+            ResetCarSpeed();
+            TurningTimer();
+
             foreach (var car in carGame)
             {
                 car.Location = GetPositonMovingItem(car);
@@ -235,10 +233,9 @@ namespace Race
         {
             score = 0;
             collectedCoins = 0;
-            carSpeed = 2;
 
-            timerRoad.Start();
-            timerTowardCars.Start();
+            ResetCarSpeed();
+            TurningTimer();
 
             foreach (var car in carGame)
             {
@@ -252,29 +249,11 @@ namespace Race
         private void timerMenu_Tick(object sender, EventArgs e)
         {
             MoveLines(linesMenu);
-
-            carSpeed = 2;
+            ResetCarSpeed();
             MoveCar(carMenu);
-            //CarMenu1.Top += 5;
-            //if (CarMenu1.Top > Height)
-            //{
-
-            //    CarMenu1.Top = -CarMenu1.Height;
-            //    CarMenu1.Left = r.Next(0, Width - CarMenu1.Width);
-            //}
-            //CarMenu2.Top += 3;
-            //if (CarMenu2.Top > Height)
-            //{
-            //    CarMenu2.Top = -CarMenu2.Height;
-            //    CarMenu2.Left = r.Next(0, Width - CarMenu2.Width);
-            //}
-            //CarMenu3.Top += 4;
-            //if (CarMenu3.Top > Height)
-            //{
-            //    CarMenu3.Top = -CarMenu3.Height;
-            //    CarMenu3.Left = r.Next(0, Width - CarMenu3.Width);
-            //}
         }
+
+        private void ResetCarSpeed() => carSpeed = 2;
 
         private void buttonPause_Click(object sender, EventArgs e)
         {
@@ -435,6 +414,12 @@ namespace Race
 
             linesMenu = CreateLines();
             panelMenu.Controls.AddRange(linesMenu.ToArray());
+        }
+
+        private void InitialCarsMenu()
+        {
+            carMenu = CreateCar();
+            panelMenu.Controls.AddRange(carMenu.ToArray());
         }
     }
 }
