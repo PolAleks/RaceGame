@@ -38,7 +38,7 @@
             buttonMenuExit = new Button();
             buttonStart = new Button();
             label3 = new Label();
-            label12 = new Label();
+            MiddleLineMenu = new Label();
             buttonExit = new Button();
             buttonResume = new Button();
             pictureFlag = new PictureBox();
@@ -48,7 +48,7 @@
             label = new Label();
             buttonPause = new Button();
             mainCar = new PictureBox();
-            MiddleLane = new Label();
+            MiddleLaneGame = new Label();
             timerTowardCars = new System.Windows.Forms.Timer(components);
             timerMenu = new System.Windows.Forms.Timer(components);
             panelGame.SuspendLayout();
@@ -61,7 +61,7 @@
             // timerRoad
             // 
             timerRoad.Interval = 10;
-            timerRoad.Tick += timerRoad_Tick;
+            timerRoad.Tick += TimerRoad_Tick;
             // 
             // panelGame
             // 
@@ -72,7 +72,7 @@
             panelGame.Controls.Add(label);
             panelGame.Controls.Add(buttonPause);
             panelGame.Controls.Add(mainCar);
-            panelGame.Controls.Add(MiddleLane);
+            panelGame.Controls.Add(MiddleLaneGame);
             panelGame.Location = new Point(0, 0);
             panelGame.Margin = new Padding(4);
             panelGame.Name = "panelGame";
@@ -100,7 +100,7 @@
             panelMenu.Controls.Add(buttonMenuExit);
             panelMenu.Controls.Add(buttonStart);
             panelMenu.Controls.Add(label3);
-            panelMenu.Controls.Add(label12);
+            panelMenu.Controls.Add(MiddleLineMenu);
             panelMenu.Location = new Point(0, 0);
             panelMenu.Margin = new Padding(4);
             panelMenu.Name = "panelMenu";
@@ -117,7 +117,7 @@
             buttonHelp.TabIndex = 82;
             buttonHelp.Text = "Help";
             buttonHelp.UseVisualStyleBackColor = true;
-            buttonHelp.Click += buttonHelp_Click;
+            buttonHelp.Click += ButtonHelp_Click;
             // 
             // buttonMenuExit
             // 
@@ -129,7 +129,7 @@
             buttonMenuExit.TabIndex = 67;
             buttonMenuExit.Text = "Exit";
             buttonMenuExit.UseVisualStyleBackColor = true;
-            buttonMenuExit.Click += buttonMenuExit_Click;
+            buttonMenuExit.Click += ButtonExit_Click;
             // 
             // buttonStart
             // 
@@ -141,7 +141,7 @@
             buttonStart.TabIndex = 65;
             buttonStart.Text = "Start";
             buttonStart.UseVisualStyleBackColor = true;
-            buttonStart.Click += buttonStart_Click;
+            buttonStart.Click += ButtonStart_Click;
             // 
             // label3
             // 
@@ -156,16 +156,16 @@
             label3.TabIndex = 66;
             label3.Text = "Race";
             // 
-            // label12
+            // MiddleLineMenu
             // 
-            label12.BackColor = Color.White;
-            label12.ForeColor = SystemColors.Control;
-            label12.Location = new Point(214, -4);
-            label12.Margin = new Padding(4, 0, 4, 0);
-            label12.Name = "label12";
-            label12.Size = new Size(20, 654);
-            label12.TabIndex = 68;
-            label12.TextAlign = ContentAlignment.MiddleCenter;
+            MiddleLineMenu.BackColor = Color.White;
+            MiddleLineMenu.ForeColor = SystemColors.Control;
+            MiddleLineMenu.Location = new Point(214, -4);
+            MiddleLineMenu.Margin = new Padding(4, 0, 4, 0);
+            MiddleLineMenu.Name = "MiddleLineMenu";
+            MiddleLineMenu.Size = new Size(20, 654);
+            MiddleLineMenu.TabIndex = 68;
+            MiddleLineMenu.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // buttonExit
             // 
@@ -177,7 +177,7 @@
             buttonExit.TabIndex = 53;
             buttonExit.Text = "Exit";
             buttonExit.UseVisualStyleBackColor = true;
-            buttonExit.Click += buttonExit_Click;
+            buttonExit.Click += ButtonExit_Click;
             // 
             // buttonResume
             // 
@@ -189,7 +189,7 @@
             buttonResume.TabIndex = 52;
             buttonResume.Text = "Resume";
             buttonResume.UseVisualStyleBackColor = true;
-            buttonResume.Click += buttonResume_Click;
+            buttonResume.Click += ButtonResume_Click;
             // 
             // pictureFlag
             // 
@@ -262,7 +262,7 @@
             buttonPause.TabIndex = 1;
             buttonPause.Text = "Pause";
             buttonPause.UseVisualStyleBackColor = true;
-            buttonPause.Click += buttonPause_Click;
+            buttonPause.Click += ButtonPause_Click;
             // 
             // mainCar
             // 
@@ -279,25 +279,25 @@
             // 
             // MiddleLane
             // 
-            MiddleLane.BackColor = Color.White;
-            MiddleLane.ForeColor = SystemColors.Control;
-            MiddleLane.Location = new Point(214, -4);
-            MiddleLane.Margin = new Padding(4, 0, 4, 0);
-            MiddleLane.Name = "MiddleLane";
-            MiddleLane.Size = new Size(20, 654);
-            MiddleLane.TabIndex = 33;
-            MiddleLane.TextAlign = ContentAlignment.MiddleCenter;
+            MiddleLaneGame.BackColor = Color.White;
+            MiddleLaneGame.ForeColor = SystemColors.Control;
+            MiddleLaneGame.Location = new Point(214, -4);
+            MiddleLaneGame.Margin = new Padding(4, 0, 4, 0);
+            MiddleLaneGame.Name = "MiddleLane";
+            MiddleLaneGame.Size = new Size(20, 654);
+            MiddleLaneGame.TabIndex = 33;
+            MiddleLaneGame.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // timerTowardCars
             // 
             timerTowardCars.Interval = 10;
-            timerTowardCars.Tick += timerTowardCars_Tick;
+            timerTowardCars.Tick += TimerTowardCars_Tick;
             // 
             // timerMenu
             // 
             timerMenu.Enabled = true;
             timerMenu.Interval = 10;
-            timerMenu.Tick += timerMenu_Tick;
+            timerMenu.Tick += TimerMenu_Tick;
             // 
             // RaceGame
             // 
@@ -329,7 +329,7 @@
         #endregion
         private System.Windows.Forms.Timer timerRoad;
 		private System.Windows.Forms.Panel panelGame;
-		private System.Windows.Forms.Label MiddleLane;
+		private System.Windows.Forms.Label MiddleLaneGame;
 		private System.Windows.Forms.PictureBox mainCar;
 		private System.Windows.Forms.Timer timerTowardCars;
 		private System.Windows.Forms.Timer timerMenu;
@@ -347,6 +347,6 @@
 		private Button buttonMenuExit;
 		private Button buttonStart;
 		private Label label3;	
-		private Label label12;
+		private Label MiddleLineMenu;
 	}
 }

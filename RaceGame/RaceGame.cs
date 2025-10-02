@@ -60,7 +60,7 @@ namespace Race
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void timerRoad_Tick(object sender, EventArgs e)
+        private void TimerRoad_Tick(object sender, EventArgs e)
         {
             // Отображение набранных очков
             labelScore.Text = "Score: " + score / 10;
@@ -79,7 +79,7 @@ namespace Race
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void timerTowardCars_Tick(object sender, EventArgs e)
+        private void TimerTowardCars_Tick(object sender, EventArgs e)
         {
             MoveCar(carGame);
 
@@ -93,6 +93,20 @@ namespace Race
                 }
             }
         }
+
+
+        /// <summary>
+        /// Обработчик движения встречных машин в меню
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TimerMenu_Tick(object sender, EventArgs e)
+        {
+            MoveLines(linesMenu);
+            ResetCarSpeed();
+            MoveCar(carMenu);
+        }
+
 
         /// <summary>
         /// Анимация движения встречных машинок
@@ -165,7 +179,7 @@ namespace Race
             {
                 if (e.KeyCode == Keys.Right)
                 {
-                    if (mainCar.Right < 500)
+                    if (mainCar.Right < Width)
                         mainCar.Left += 9;
                 }
                 if (e.KeyCode == Keys.Left)
@@ -186,9 +200,7 @@ namespace Race
             }
             if (e.KeyCode == Keys.Escape)
             {
-                timerRoad.Enabled = false;
-                timerTowardCars.Enabled = false;
-                panelPause.Show();
+                ButtonPause_Click(this, new EventArgs());
             }
         }
 
@@ -246,51 +258,33 @@ namespace Race
             panelGame.Show();
             panelMenu.Hide();
         }
-        private void timerMenu_Tick(object sender, EventArgs e)
-        {
-            MoveLines(linesMenu);
-            ResetCarSpeed();
-            MoveCar(carMenu);
-        }
+        
 
         private void ResetCarSpeed() => carSpeed = 2;
-
-        private void buttonPause_Click(object sender, EventArgs e)
-        {
-
-            timerRoad.Enabled = false;
-            timerTowardCars.Enabled = false;
-            panelPause.Show();
-        }
-
-        private void buttonResume_Click(object sender, EventArgs e)
-        {
-            timerRoad.Enabled = true;
-            timerTowardCars.Enabled = true;
-            panelPause.Hide();
-        }
-
-        private void buttonExit_Click(object sender, EventArgs e)
-        {
-            panelMenu.Show();
-        }
-
-        private void buttonHelp_Click(object sender, EventArgs e)
-        {
-            Help.ShowHelp(this, @"C:\Users\khha4\Race\help.chm", HelpNavigator.TableOfContents);
-        }
-
-        private void buttonStart_Click(object sender, EventArgs e)
+        private void ButtonStart_Click(object sender, EventArgs e)
         {
             StartGame();
             panelGame.Show();
             panelMenu.Hide();
         }
 
-        private void buttonMenuExit_Click(object sender, EventArgs e)
+        private void ButtonPause_Click(object sender, EventArgs e)
         {
-            this.Close();
+            TurningTimer();
+            panelPause.Show();
         }
+
+        private void ButtonResume_Click(object sender, EventArgs e)
+        {
+            TurningTimer();
+            panelPause.Hide();
+        }
+
+        private void ButtonExit_Click(object sender, EventArgs e) => Close();
+
+        private void ButtonHelp_Click(object sender, EventArgs e) => Help.ShowHelp(this, @"C:\Users\khha4\Race\help.chm", HelpNavigator.TableOfContents);
+
+
 
         /// <summary>
         /// Генерация дорожной разметки
@@ -407,7 +401,8 @@ namespace Race
 
         private void InitialRoadMarking()
         {
-            MiddleLane.SendToBack();
+            MiddleLaneGame.SendToBack();
+            MiddleLineMenu.SendToBack();
 
             linesGame = CreateLines();
             panelGame.Controls.AddRange(linesGame.ToArray());
