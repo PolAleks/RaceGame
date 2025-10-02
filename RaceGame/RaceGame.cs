@@ -73,7 +73,6 @@ namespace Race
             CollectCoins();
         }
 
-
         /// <summary>
         /// Обработчик движения встречных машин в процессе игры
         /// </summary>
@@ -94,7 +93,6 @@ namespace Race
             }
         }
 
-
         /// <summary>
         /// Обработчик движения встречных машин в меню
         /// </summary>
@@ -106,7 +104,6 @@ namespace Race
             ResetCarSpeed();
             MoveCar(carMenu);
         }
-
 
         /// <summary>
         /// Анимация движения встречных машинок
@@ -123,7 +120,6 @@ namespace Race
             }
         }
 
-
         /// <summary>
         /// Анимацию движения дорожней разметки
         /// </summary>
@@ -137,7 +133,6 @@ namespace Race
                     line.Top = -line.Height;
             }
         }
-
 
         /// <summary>
         /// Анимация движения монеток на игровом поле 
@@ -153,7 +148,6 @@ namespace Race
                 }
             }
         }
-
 
         /// <summary>
         /// Подсчет собранных монеток
@@ -172,22 +166,26 @@ namespace Race
             }
         }
 
-
-
-            
         private void RaceGame_KeyDown(object sender, KeyEventArgs e)
         {
             if (carSpeed != 0)
             {
+                int halfWidthCar = mainCar.Width / 2;
+                int leftSideRoad = panelGame.Width;
+
                 if (e.KeyCode == Keys.Right)
                 {
-                    if (mainCar.Right < Width)
+                    if (mainCar.Right < leftSideRoad + halfWidthCar)
                         mainCar.Left += 9;
+                    else
+                        mainCar.Left = -halfWidthCar;
                 }
                 if (e.KeyCode == Keys.Left)
                 {
-                    if (mainCar.Left > 0)
+                    if (mainCar.Left > -halfWidthCar)
                         mainCar.Left -= 9;
+                    else
+                        mainCar.Left = leftSideRoad - halfWidthCar;
                 }
             }
             if (e.KeyCode == Keys.Up)
@@ -243,6 +241,7 @@ namespace Race
                 car.Location = GetPositonMovingItem(car);
             }
         }
+
         private void StartGame()
         {
             score = 0;
@@ -262,6 +261,7 @@ namespace Race
         }
 
         private void ResetCarSpeed() => carSpeed = 2;
+
         private void ButtonStart_Click(object sender, EventArgs e)
         {
             StartGame();
@@ -284,8 +284,6 @@ namespace Race
         private void ButtonExit_Click(object sender, EventArgs e) => Close();
 
         private void ButtonHelp_Click(object sender, EventArgs e) => Help.ShowHelp(this, @"C:\Users\khha4\Race\help.chm", HelpNavigator.TableOfContents);
-
-
 
         /// <summary>
         /// Генерация дорожной разметки
