@@ -38,15 +38,23 @@ namespace Race
         private void RaceGame_Load(object sender, EventArgs e)
         {
             InitialTowardCarsAndCoins();
-
+            InitialCarsMenu();
             InitialRoadMarking();
 
             timerRoad.Stop();
             timerTowardCars.Stop();
+            timerMenu.Start();
+
             panelMenu.Show();
         }
 
-      
+        private void InitialCarsMenu()
+        {
+            carMenu = CreateCar();
+            panelMenu.Controls.AddRange(carMenu.ToArray());
+        }
+
+
         /// <summary>
         /// Обработчик движения трассы(полосы, монеты) в процессе игры 
         /// </summary>
@@ -75,15 +83,12 @@ namespace Race
         /// <param name="e"></param>
         private void timerTowardCars_Tick(object sender, EventArgs e)
         {
+            MoveCar(carGame);
+
             for (int i = 0; i < carGame.Count; i++)
             {
                 var car = carGame[i];
-                car.Top += carSpeed + deltaSpeedTowardCar[i];
-                if (car.Top > Height)
-                {
-                    car.Location = GetPositonMovingItem(car);
-                }
-
+                
                 if (mainCar.Bounds.IntersectsWith(car.Bounds))
                 {
                     GameOver();
@@ -91,8 +96,20 @@ namespace Race
             }
         }
 
-
-       
+        /// <summary>
+        /// Анимация движения встречных машинок
+        /// </summary>
+        /// <param name="cars"></param>
+        private void MoveCar(List<PictureBox> cars)
+        {
+            for (int i = 0; i < cars.Count; i++)
+            {
+                var car = cars[i];
+                car.Top += carSpeed + deltaSpeedTowardCar[i];
+                if (car.Top > Height)
+                    car.Location = GetPositonMovingItem(car);
+            }
+        }
 
 
         /// <summary>
@@ -206,6 +223,7 @@ namespace Race
             collectedCoins -= 15;
             labelCoins.Text = "Coins: " + collectedCoins;
             carSpeed = 2;
+            
             timerRoad.Start();
             timerTowardCars.Start();
             foreach (var car in carGame)
@@ -224,7 +242,7 @@ namespace Race
 
             foreach (var car in carGame)
             {
-                car.Location = GetPositonMovingItem(car);
+                car.Location = GetPositonMovingItem(car, true);
             }
 
             panelPause.Hide();
@@ -235,25 +253,27 @@ namespace Race
         {
             MoveLines(linesMenu);
 
-            CarMenu1.Top += 5;
-            if (CarMenu1.Top > Height)
-            {
+            carSpeed = 2;
+            MoveCar(carMenu);
+            //CarMenu1.Top += 5;
+            //if (CarMenu1.Top > Height)
+            //{
 
-                CarMenu1.Top = -CarMenu1.Height;
-                CarMenu1.Left = r.Next(0, Width - CarMenu1.Width);
-            }
-            CarMenu2.Top += 3;
-            if (CarMenu2.Top > Height)
-            {
-                CarMenu2.Top = -CarMenu2.Height;
-                CarMenu2.Left = r.Next(0, Width - CarMenu2.Width);
-            }
-            CarMenu3.Top += 4;
-            if (CarMenu3.Top > Height)
-            {
-                CarMenu3.Top = -CarMenu3.Height;
-                CarMenu3.Left = r.Next(0, Width - CarMenu3.Width);
-            }
+            //    CarMenu1.Top = -CarMenu1.Height;
+            //    CarMenu1.Left = r.Next(0, Width - CarMenu1.Width);
+            //}
+            //CarMenu2.Top += 3;
+            //if (CarMenu2.Top > Height)
+            //{
+            //    CarMenu2.Top = -CarMenu2.Height;
+            //    CarMenu2.Left = r.Next(0, Width - CarMenu2.Width);
+            //}
+            //CarMenu3.Top += 4;
+            //if (CarMenu3.Top > Height)
+            //{
+            //    CarMenu3.Top = -CarMenu3.Height;
+            //    CarMenu3.Left = r.Next(0, Width - CarMenu3.Width);
+            //}
         }
 
         private void buttonPause_Click(object sender, EventArgs e)

@@ -38,9 +38,9 @@
             buttonMenuExit = new Button();
             buttonStart = new Button();
             label3 = new Label();
-            CarMenu1 = new PictureBox();
-            CarMenu3 = new PictureBox();
-            CarMenu2 = new PictureBox();
+            //CarMenu1 = new PictureBox();
+            //CarMenu3 = new PictureBox();
+            //CarMenu2 = new PictureBox();
             label12 = new Label();
             buttonExit = new Button();
             buttonResume = new Button();
@@ -57,9 +57,9 @@
             panelGame.SuspendLayout();
             panelPause.SuspendLayout();
             panelMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)CarMenu1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)CarMenu3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)CarMenu2).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)CarMenu1).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)CarMenu3).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)CarMenu2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureFlag).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mainCar).BeginInit();
             SuspendLayout();
@@ -107,9 +107,9 @@
             panelMenu.Controls.Add(buttonMenuExit);
             panelMenu.Controls.Add(buttonStart);
             panelMenu.Controls.Add(label3);
-            panelMenu.Controls.Add(CarMenu1);
-            panelMenu.Controls.Add(CarMenu3);
-            panelMenu.Controls.Add(CarMenu2);
+            //panelMenu.Controls.Add(CarMenu1);
+            //panelMenu.Controls.Add(CarMenu3);
+            //panelMenu.Controls.Add(CarMenu2);
             panelMenu.Controls.Add(label12);
             panelMenu.Location = new Point(0, 0);
             panelMenu.Margin = new Padding(4);
@@ -165,42 +165,6 @@
             label3.Size = new Size(384, 178);
             label3.TabIndex = 66;
             label3.Text = "Race";
-            // 
-            // CarMenu1
-            // 
-            CarMenu1.BackColor = Color.Transparent;
-            CarMenu1.Image = (Image)resources.GetObject("CarMenu1.Image");
-            CarMenu1.Location = new Point(14, 15);
-            CarMenu1.Margin = new Padding(4);
-            CarMenu1.Name = "CarMenu1";
-            CarMenu1.Size = new Size(59, 127);
-            CarMenu1.SizeMode = PictureBoxSizeMode.Zoom;
-            CarMenu1.TabIndex = 80;
-            CarMenu1.TabStop = false;
-            // 
-            // CarMenu3
-            // 
-            CarMenu3.BackColor = Color.Transparent;
-            CarMenu3.Image = (Image)resources.GetObject("CarMenu3.Image");
-            CarMenu3.Location = new Point(375, 30);
-            CarMenu3.Margin = new Padding(4);
-            CarMenu3.Name = "CarMenu3";
-            CarMenu3.Size = new Size(59, 127);
-            CarMenu3.SizeMode = PictureBoxSizeMode.Zoom;
-            CarMenu3.TabIndex = 81;
-            CarMenu3.TabStop = false;
-            // 
-            // CarMenu2
-            // 
-            CarMenu2.BackColor = Color.Transparent;
-            CarMenu2.Image = (Image)resources.GetObject("CarMenu2.Image");
-            CarMenu2.Location = new Point(150, 4);
-            CarMenu2.Margin = new Padding(4);
-            CarMenu2.Name = "CarMenu2";
-            CarMenu2.Size = new Size(59, 127);
-            CarMenu2.SizeMode = PictureBoxSizeMode.Zoom;
-            CarMenu2.TabIndex = 79;
-            CarMenu2.TabStop = false;
             // 
             // label12
             // 
@@ -368,9 +332,6 @@
             panelPause.PerformLayout();
             panelMenu.ResumeLayout(false);
             panelMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)CarMenu1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)CarMenu3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)CarMenu2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureFlag).EndInit();
             ((System.ComponentModel.ISupportInitialize)mainCar).EndInit();
             ResumeLayout(false);
@@ -380,9 +341,6 @@
         private System.Windows.Forms.Timer timerRoad;
 		private System.Windows.Forms.Panel panelGame;
 		private System.Windows.Forms.Label MiddleLane;
-		//private System.Windows.Forms.PictureBox towardCar2;
-		//private System.Windows.Forms.PictureBox towardCar3;
-		//private System.Windows.Forms.PictureBox towardCar1;
 		private System.Windows.Forms.PictureBox mainCar;
 		private System.Windows.Forms.Timer timerTowardCars;
 		private System.Windows.Forms.Timer timerMenu;
@@ -399,10 +357,7 @@
 		private Button buttonHelp;
 		private Button buttonMenuExit;
 		private Button buttonStart;
-		private Label label3;
-		private PictureBox CarMenu1;
-		private PictureBox CarMenu3;
-		private PictureBox CarMenu2;		
+		private Label label3;	
 		private Label label12;
 	}
 }
