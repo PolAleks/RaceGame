@@ -30,7 +30,7 @@ namespace Race
         private Image[] imagesCars;
         private int[] deltaSpeedTowardCar = new int[] { 4, 2, 3 };
 
-        private Player player;
+        private Player? player;
 
         Random r = new Random();
         int score = 0;
@@ -422,7 +422,7 @@ namespace Race
 
         private void InitialPlayer()
         {
-            if (string.IsNullOrEmpty(Settings.Default.UserName))
+            if (player is null)
             {
                 using (var welcomFrm = new WelcomForm())
                 {
@@ -431,12 +431,13 @@ namespace Race
                         string name = welcomFrm.Name;
                         player = new Player(name);
                     }
+                    else
+                    {
+                        player = new Player("XXX");
+                    }
                 }
             }
-            else
-            {
-                player = new Player(Settings.Default.UserName);
-            }
+            
             labelName.Text = player.Name;
         }
     }

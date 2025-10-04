@@ -18,13 +18,12 @@
             else
             {
                 DialogResult = DialogResult.OK;
-                Close();
             }
         }
 
         private void TextBoxNameValue_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 ButtonStart_Click(sender, e);
             }
