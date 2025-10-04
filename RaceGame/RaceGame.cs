@@ -48,25 +48,6 @@ namespace Race
             InitialPlayer();
         }
 
-        private void InitialPlayer()
-        {
-            if (string.IsNullOrEmpty(Settings.Default.UserName))
-            {
-                using (var welcomFrm = new WelcomForm())
-                {
-                    if (welcomFrm.ShowDialog() == DialogResult.OK)
-                    {
-                        string name = welcomFrm.Name;
-                        player = new Player(name);
-                    }
-                }
-            }
-            else
-            {
-                player = new Player(Settings.Default.UserName);
-            }
-            labelName.Text = player.Name;
-        }
 
         /// <summary>
         /// Переключение таймеров
@@ -437,6 +418,26 @@ namespace Race
         {
             carMenu = CreateCar();
             panelMenu.Controls.AddRange(carMenu.ToArray());
+        }
+
+        private void InitialPlayer()
+        {
+            if (string.IsNullOrEmpty(Settings.Default.UserName))
+            {
+                using (var welcomFrm = new WelcomForm())
+                {
+                    if (welcomFrm.ShowDialog() == DialogResult.OK)
+                    {
+                        string name = welcomFrm.Name;
+                        player = new Player(name);
+                    }
+                }
+            }
+            else
+            {
+                player = new Player(Settings.Default.UserName);
+            }
+            labelName.Text = player.Name;
         }
     }
 }
