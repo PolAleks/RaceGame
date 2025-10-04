@@ -1,4 +1,5 @@
 ﻿using Race.Properties;
+using Race.Services;
 
 namespace Race
 {
@@ -7,6 +8,7 @@ namespace Race
         public RaceGame()
         {
             InitializeComponent();
+            
         }
 
         // Прерывистая разметка в игре
@@ -28,6 +30,8 @@ namespace Race
         private Image[] imagesCars;
         private int[] deltaSpeedTowardCar = new int[] { 4, 2, 3 };
 
+        private Player player;
+
         Random r = new Random();
         int score = 0;
 
@@ -41,8 +45,27 @@ namespace Race
             InitialTowardCarsAndCoins();
             InitialCarsMenu();
             InitialRoadMarking();
+            InitialPlayer();
+        }
 
-            panelMenu.Show();
+        private void InitialPlayer()
+        {
+            if (string.IsNullOrEmpty(Settings.Default.UserName))
+            {
+                using (var welcomFrm = new WelcomForm())
+                {
+                    if (welcomFrm.ShowDialog() == DialogResult.OK)
+                    {
+                        string name = welcomFrm.Name;
+                        player = new Player(name);
+                    }
+                }
+            }
+            else
+            {
+                player = new Player(Settings.Default.UserName);
+            }
+            labelName.Text = player.Name;
         }
 
         /// <summary>
@@ -232,7 +255,7 @@ namespace Race
         {
             collectedCoins -= 15;
             labelCoins.Text = "Coins: " + collectedCoins;
-            
+
             ResetCarSpeed();
             TurningTimer();
 

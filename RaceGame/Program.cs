@@ -12,6 +12,7 @@ namespace Race
 			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
 			Application.Run(new RaceGame());
+			//Application.Run(new WelcomForm());
 		}
 	}
 }
