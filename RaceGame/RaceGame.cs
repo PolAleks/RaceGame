@@ -211,7 +211,7 @@ namespace Race
         private void GameOver()
         {
             TurningTimer();
-
+            
             if (collectedCoins < 15)
             {
                 MessageBox.Show("Game Over!", "Приехали!");
