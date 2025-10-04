@@ -106,7 +106,7 @@ namespace Race
         }
 
         /// <summary>
-        /// Анимация движения встречных машинок
+        /// Анимация для встречных машин
         /// </summary>
         /// <param name="cars"></param>
         private void MoveCar(List<PictureBox> cars)
@@ -121,7 +121,7 @@ namespace Race
         }
 
         /// <summary>
-        /// Анимацию движения дорожней разметки
+        /// Анимация дорожней разметки
         /// </summary>
         /// <param name="lines"></param>
         private void MoveLines(List<Label> lines)
@@ -135,7 +135,7 @@ namespace Race
         }
 
         /// <summary>
-        /// Анимация движения монеток на игровом поле 
+        /// Анимация монет
         /// </summary>
         private void MoveCoins()
         {
@@ -150,7 +150,7 @@ namespace Race
         }
 
         /// <summary>
-        /// Подсчет собранных монеток
+        /// Подсчет собранных монет
         /// </summary>
         private void CollectCoins()
         {
@@ -378,7 +378,7 @@ namespace Race
             int widthZone = Width / countCars;
             int zoneItem = Convert.ToInt32(item.AccessibleName);
 
-            int x = r.Next(widthZone * zoneItem, widthZone * (zoneItem + 1));
+            int x = r.Next(widthZone * zoneItem, widthZone * (zoneItem + 1) - item.Width);
             int y = -item.Height;
 
             if (!repeat)
