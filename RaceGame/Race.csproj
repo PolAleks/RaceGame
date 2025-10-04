@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Properties\Settings.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Properties\Settings.settings" />
     <None Remove="Resources\Coin.png" />
     <None Remove="Resources\mainCar1.png" />
     <None Remove="Resources\mainCar2.png" />
@@ -20,6 +25,10 @@
     <None Remove="Resources\towardsCar3.png" />
     <None Remove="Resources\towardsCar4.png" />
     <None Remove="Resources\towardsCar5.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <ItemGroup>

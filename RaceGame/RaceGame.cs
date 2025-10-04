@@ -1,4 +1,5 @@
 ﻿using Race.Properties;
+using Race.Services;
 
 namespace Race
 {
@@ -7,6 +8,7 @@ namespace Race
         public RaceGame()
         {
             InitializeComponent();
+            
         }
 
         // Прерывистая разметка в игре
@@ -28,6 +30,8 @@ namespace Race
         private Image[] imagesCars;
         private int[] deltaSpeedTowardCar = new int[] { 4, 2, 3 };
 
+        private Player? player;
+
         Random r = new Random();
         int score = 0;
 
@@ -41,9 +45,9 @@ namespace Race
             InitialTowardCarsAndCoins();
             InitialCarsMenu();
             InitialRoadMarking();
-
-            panelMenu.Show();
+            InitialPlayer();
         }
+
 
         /// <summary>
         /// Переключение таймеров
@@ -106,7 +110,7 @@ namespace Race
         }
 
         /// <summary>
-        /// Анимация движения встречных машинок
+        /// Анимация для встречных машин
         /// </summary>
         /// <param name="cars"></param>
         private void MoveCar(List<PictureBox> cars)
@@ -121,7 +125,7 @@ namespace Race
         }
 
         /// <summary>
-        /// Анимацию движения дорожней разметки
+        /// Анимация дорожней разметки
         /// </summary>
         /// <param name="lines"></param>
         private void MoveLines(List<Label> lines)
@@ -135,7 +139,7 @@ namespace Race
         }
 
         /// <summary>
-        /// Анимация движения монеток на игровом поле 
+        /// Анимация монет
         /// </summary>
         private void MoveCoins()
         {
@@ -150,7 +154,7 @@ namespace Race
         }
 
         /// <summary>
-        /// Подсчет собранных монеток
+        /// Подсчет собранных монет
         /// </summary>
         private void CollectCoins()
         {
@@ -208,6 +212,9 @@ namespace Race
         {
             TurningTimer();
 
+            player.SaveResult(score, collectedCoins);
+            PlayersStorage.Add(player);
+
             if (collectedCoins < 15)
             {
                 MessageBox.Show("Game Over!", "Приехали!");
@@ -232,7 +239,7 @@ namespace Race
         {
             collectedCoins -= 15;
             labelCoins.Text = "Coins: " + collectedCoins;
-            
+
             ResetCarSpeed();
             TurningTimer();
 
@@ -378,7 +385,7 @@ namespace Race
             int widthZone = Width / countCars;
             int zoneItem = Convert.ToInt32(item.AccessibleName);
 
-            int x = r.Next(widthZone * zoneItem, widthZone * (zoneItem + 1));
+            int x = r.Next(widthZone * zoneItem, widthZone * (zoneItem + 1) - item.Width);
             int y = -item.Height;
 
             if (!repeat)
@@ -414,6 +421,27 @@ namespace Race
         {
             carMenu = CreateCar();
             panelMenu.Controls.AddRange(carMenu.ToArray());
+        }
+
+        private void InitialPlayer()
+        {
+            if (player is null)
+            {
+                using (var welcomFrm = new WelcomForm())
+                {
+                    if (welcomFrm.ShowDialog() == DialogResult.OK)
+                    {
+                        string name = welcomFrm.Name;
+                        player = new Player(name);
+                    }
+                    else
+                    {
+                        player = new Player("XXX");
+                    }
+                }
+            }
+            
+            labelName.Text = player.Name;
         }
     }
 }

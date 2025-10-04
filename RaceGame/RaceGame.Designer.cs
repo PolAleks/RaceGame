@@ -49,10 +49,9 @@
             buttonPause = new Button();
             mainCar = new PictureBox();
             MiddleLaneGame = new Label();
-            buttonPause = new Button();
-            mainCar = new PictureBox();
             timerTowardCars = new System.Windows.Forms.Timer(components);
             timerMenu = new System.Windows.Forms.Timer(components);
+            labelName = new Label();
             panelGame.SuspendLayout();
             panelPause.SuspendLayout();
             panelMenu.SuspendLayout();
@@ -69,6 +68,7 @@
             // 
             panelGame.BackColor = SystemColors.ControlDarkDark;
             panelGame.Controls.Add(panelPause);
+            panelGame.Controls.Add(labelName);
             panelGame.Controls.Add(labelScore);
             panelGame.Controls.Add(labelCoins);
             panelGame.Controls.Add(label);
@@ -209,7 +209,7 @@
             // 
             labelPause.AutoSize = true;
             labelPause.Font = new Font("Microsoft YaHei", 90F, FontStyle.Bold, GraphicsUnit.Point);
-            labelPause.Location = new Point(0, 0);
+            labelPause.Location = new Point(20, -17);
             labelPause.Margin = new Padding(4, 0, 4, 0);
             labelPause.Name = "labelPause";
             labelPause.Size = new Size(422, 159);
@@ -220,12 +220,12 @@
             // 
             labelScore.AutoSize = true;
             labelScore.BackColor = Color.Black;
-            labelScore.Font = new Font("Microsoft YaHei", 22F, FontStyle.Bold, GraphicsUnit.Point);
+            labelScore.Font = new Font("Microsoft YaHei", 18F, FontStyle.Bold, GraphicsUnit.Point);
             labelScore.ForeColor = SystemColors.ButtonHighlight;
-            labelScore.Location = new Point(14, 10);
+            labelScore.Location = new Point(157, 16);
             labelScore.Margin = new Padding(4, 0, 4, 0);
             labelScore.Name = "labelScore";
-            labelScore.Size = new Size(110, 40);
+            labelScore.Size = new Size(87, 31);
             labelScore.TabIndex = 56;
             labelScore.Text = "Score:";
             // 
@@ -233,12 +233,12 @@
             // 
             labelCoins.AutoSize = true;
             labelCoins.BackColor = Color.Black;
-            labelCoins.Font = new Font("Microsoft YaHei", 22F, FontStyle.Bold, GraphicsUnit.Point);
+            labelCoins.Font = new Font("Microsoft YaHei", 18F, FontStyle.Bold, GraphicsUnit.Point);
             labelCoins.ForeColor = SystemColors.ButtonHighlight;
-            labelCoins.Location = new Point(242, 10);
+            labelCoins.Location = new Point(314, 16);
             labelCoins.Margin = new Padding(4, 0, 4, 0);
             labelCoins.Name = "labelCoins";
-            labelCoins.Size = new Size(109, 40);
+            labelCoins.Size = new Size(88, 31);
             labelCoins.TabIndex = 57;
             labelCoins.Text = "Coins:";
             // 
@@ -279,13 +279,13 @@
             mainCar.TabIndex = 47;
             mainCar.TabStop = false;
             // 
-            // MiddleLane
+            // MiddleLaneGame
             // 
             MiddleLaneGame.BackColor = Color.White;
             MiddleLaneGame.ForeColor = SystemColors.Control;
             MiddleLaneGame.Location = new Point(214, -4);
             MiddleLaneGame.Margin = new Padding(4, 0, 4, 0);
-            MiddleLaneGame.Name = "MiddleLane";
+            MiddleLaneGame.Name = "MiddleLaneGame";
             MiddleLaneGame.Size = new Size(20, 654);
             MiddleLaneGame.TabIndex = 33;
             MiddleLaneGame.TextAlign = ContentAlignment.MiddleCenter;
@@ -301,12 +301,24 @@
             timerMenu.Interval = 10;
             timerMenu.Tick += TimerMenu_Tick;
             // 
+            // labelName
+            // 
+            labelName.AutoSize = true;
+            labelName.BackColor = Color.Black;
+            labelName.Font = new Font("Microsoft YaHei", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            labelName.ForeColor = SystemColors.ButtonHighlight;
+            labelName.Location = new Point(8, 16);
+            labelName.Margin = new Padding(4, 0, 4, 0);
+            labelName.Name = "labelName";
+            labelName.Size = new Size(0, 31);
+            labelName.TabIndex = 58;
+            // 
             // RaceGame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(448, 649);
+            ClientSize = new Size(447, 650);
             Controls.Add(panelGame);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             KeyPreview = true;
@@ -350,5 +362,6 @@
 		private Button buttonStart;
 		private Label label3;	
 		private Label MiddleLineMenu;
-	}
+        private Label labelName;
+    }
 }
