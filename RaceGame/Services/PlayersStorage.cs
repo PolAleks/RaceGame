@@ -8,15 +8,19 @@
         {
             var list = GetPlayers();
             list.Add(player);
-            convert.Serialize<Player>(player);
+
+            string saveData = convert.Serialize(list);
+            FileProvider.Save(file, saveData);
         }
 
         public static List<Player> GetPlayers() 
         { 
-            List<Player> list = new List<Player>();
             string data = FileProvider.Load(file);
-            list = convert.Deserialize<List<Player>>(data);
-            return list;
+
+            if (string.IsNullOrEmpty(data))
+                return new List<Player>();
+            else 
+                return convert.Deserialize<List<Player>>(data);
         }
     }
 }
