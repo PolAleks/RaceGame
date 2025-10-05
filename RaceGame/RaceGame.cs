@@ -1,5 +1,6 @@
 ﻿using Race.Properties;
 using Race.Services;
+using System.Media;
 
 namespace Race
 {
@@ -32,6 +33,7 @@ namespace Race
 
         private Player? player;
 
+        private SoundPlayer backgroundMusic;
         Random r = new Random();
         int score = 0;
 
@@ -46,7 +48,24 @@ namespace Race
             InitialCarsMenu();
             InitialRoadMarking();
             InitialPlayer();
+            InitialBackgroundMusic();
         }
+
+        /// <summary>
+        /// Инициализация фонового звука в процессе игры
+        /// </summary>
+        private void InitialBackgroundMusic()
+        {
+            try
+            {
+                backgroundMusic = new SoundPlayer(Resources.background);
+                //backgroundMusic.PlayLooping();
+            }
+            catch(Exception ex) 
+            {
+                System.Diagnostics.Debug.WriteLine($"Музыка не загружена: {ex.Message}");
+            }
+        }        
 
 
         /// <summary>
@@ -210,6 +229,7 @@ namespace Race
 
         private void GameOver()
         {
+            backgroundMusic.Stop();
             TurningTimer();
 
             player.SaveResult(score, collectedCoins);
@@ -251,6 +271,7 @@ namespace Race
 
         private void StartGame()
         {
+            backgroundMusic.PlayLooping();
             score = 0;
             collectedCoins = 0;
 
@@ -442,6 +463,13 @@ namespace Race
             }
             
             labelName.Text = player.Name;
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            backgroundMusic.Stop();
+            backgroundMusic.Dispose();
+            base.OnFormClosing(e);
         }
     }
 }
