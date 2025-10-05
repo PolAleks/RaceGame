@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="background.wav" />
     <Resource Include="Resources\Coin.png" />
     <Resource Include="Resources\mainCar1.png" />
     <Resource Include="Resources\mainCar2.png" />
